@@ -1,0 +1,19 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Throw.ThrowBallAngle>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.AngleType.Name).Titled(Resources.AngleType).Sortable(true).Filterable(true);
+    c.Add(y => y.MotorLeftSpeed).Titled(Resources.MotorLeftSpeed).Sortable(true).Filterable(true);
+    c.Add(y => y.MotorRightSpeed).Titled(Resources.MotorRightSpeed).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("ThrowBallAngleDetails", "ThrowBall", new { id = id }));
+    @Html.EditListItem(Url.Action("ThrowBallAngleEdit", "ThrowBall", new { id = id }));
+    @Html.DeleteListItem(Url.Action("ThrowBallAngleDelete", "ThrowBall", new { id = id }));
+    @Html.EndActionMenu()
+}

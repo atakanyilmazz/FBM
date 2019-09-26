@@ -1,0 +1,65 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Train.Target
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("Edit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Target))
+{
+    using (Html.FBMDl())
+    {
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.TrainingId)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.Training.Name)
+        }
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.ThrowingId)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.Throwing.Name)
+        }
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.CastleId)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.Castle.Name)
+        }
+        @Html.FBMDisplayFor(x => x.ThrowingCount)
+    }
+}
+@*@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class: "active"))
+            {
+                @Html.FBMTab("trainLog", Resources.TrainLog)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "trainLog"))
+            {
+                @Html.Partial("~/Views/TrainLog/_TrainLogList.cshtml", Model.TrainLog)
+            }
+        }
+    }
+}*@

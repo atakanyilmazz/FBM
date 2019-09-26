@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>Kart</value>
+  </data>
+  <data name="Castle" xml:space="preserve">
+    <value>Kale</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Desctription" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="IdentityNo" xml:space="preserve">
+    <value>Sıra</value>
+  </data>
+  <data name="labelForDesctription" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="labelForName" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="Ldr" xml:space="preserve">
+    <value>LDR</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Motor" xml:space="preserve">
+    <value>Motor</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır!</value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>İstasyon</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="Connections" xml:space="preserve">
+    <value>Bağlantılar</value>
+  </data>
+  <data name="Axis" xml:space="preserve">
+    <value>Eksen</value>
+  </data>
+  <data name="AxisOrder" xml:space="preserve">
+    <value>Eksen Sırası</value>
+  </data>
+  <data name="LaserCount" xml:space="preserve">
+    <value>Lazer Adeti</value>
+  </data>
+  <data name="LdrUnitNo" xml:space="preserve">
+    <value>Ünite Numarası</value>
+  </data>
+  <data name="WallPosition" xml:space="preserve">
+    <value>Duvar Yönü</value>
+  </data>
+  <data name="DataManage" xml:space="preserve">
+    <value>Veri İşlemleri</value>
+  </data>
+  <data name="FBM" xml:space="preserve">
+    <value>Futbolmatik</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Anasayfa</value>
+  </data>
+  <data name="StartTraining" xml:space="preserve">
+    <value>Antremana Başla</value>
+  </data>
+  <data name="WatchTraining" xml:space="preserve">
+    <value>Antreman İzle</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Canlı</value>
+  </data>
+  <data name="NewTrainingStarting" xml:space="preserve">
+    <value>Yeni Antreman Başlıyor!</value>
+  </data>
+  <data name="NotNow" xml:space="preserve">
+    <value>Şimdi Değil!</value>
+  </data>
+  <data name="Watch" xml:space="preserve">
+    <value>İzle!</value>
+  </data>
+  <data name="WatchToo" xml:space="preserve">
+    <value>Sende İzle</value>
+  </data>
+  <data name="BallThrown" xml:space="preserve">
+    <value>Top Atıldı!</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="GoalStatus" xml:space="preserve">
+    <value>Gol Oranı</value>
+  </data>
+  <data name="GoalSuccess" xml:space="preserve">
+    <value>Gol Başarılı!</value>
+  </data>
+  <data name="GoalUnSuccess" xml:space="preserve">
+    <value>Gol Başarısız!</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="TrainingStarting" xml:space="preserve">
+    <value>Antreman Başlıyor!</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Emin misin?</value>
+  </data>
+  <data name="Attentive" xml:space="preserve">
+    <value>Dikkat!</value>
+  </data>
+  <data name="DataCanBeLost" xml:space="preserve">
+    <value>Veri tekrar geri getirilemez!</value>
+  </data>
+  <data name="DeleteUnSuccess" xml:space="preserve">
+    <value>Silme Başarısız</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="ToRefresh" xml:space="preserve">
+    <value>{0} saniye icinde sayfa yenilencek!</value>
+  </data>
+  <data name="YesDelete" xml:space="preserve">
+    <value>Evet Sil!</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detay</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Yeni Ekle</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="DownloadLink" xml:space="preserve">
+    <value>İndirme Linki</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Önceki Sayfa</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Kat</value>
+  </data>
+  <data name="StationNo" xml:space="preserve">
+    <value>İstasyon No</value>
+  </data>
+  <data name="Throwing" xml:space="preserve">
+    <value>Fırlatma</value>
+  </data>
+  <data name="CastleLdrPoint" xml:space="preserve">
+    <value>Kale Ldr Konumları</value>
+  </data>
+  <data name="CastleNo" xml:space="preserve">
+    <value>Kale No</value>
+  </data>
+  <data name="CastlePosition" xml:space="preserve">
+    <value>Kale Pozisyonu</value>
+  </data>
+  <data name="ChooseTrainingAndPlayer" xml:space="preserve">
+    <value>Oyuncu ve antreman seçimi</value>
+  </data>
+  <data name="isSuccess" xml:space="preserve">
+    <value>Başarı Durumu</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Oyuncu</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Hız</value>
+  </data>
+  <data name="SpeedScore" xml:space="preserve">
+    <value>Hız Puanı</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Başla!</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Hedef</value>
+  </data>
+  <data name="ThrowBallAltitude" xml:space="preserve">
+    <value>Fırlatma Yüksekliği</value>
+  </data>
+  <data name="ThrowBallAngle" xml:space="preserve">
+    <value>Fırlatma Açısı</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="TimeScore" xml:space="preserve">
+    <value>Zaman Puanı</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Antreman</value>
+  </data>
+  <data name="AltitudeType" xml:space="preserve">
+    <value>Yükseklik Tipi</value>
+  </data>
+  <data name="AngleType" xml:space="preserve">
+    <value>Açı Tipi</value>
+  </data>
+  <data name="Motor1State" xml:space="preserve">
+    <value>Motor 1 Durum</value>
+  </data>
+  <data name="Motor2State" xml:space="preserve">
+    <value>Motor 2 Durum</value>
+  </data>
+  <data name="MotorLeftSpeed" xml:space="preserve">
+    <value>Sol Motor Hız</value>
+  </data>
+  <data name="MotorRightSpeed" xml:space="preserve">
+    <value>Sağ Motor Hız</value>
+  </data>
+  <data name="OrderNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="PlayerTraining" xml:space="preserve">
+    <value>Oyuncu Antremanı</value>
+  </data>
+  <data name="SpeedScoreFactor" xml:space="preserve">
+    <value>Skor Hız Çarpanı</value>
+  </data>
+  <data name="ThrowingCount" xml:space="preserve">
+    <value>Atış Adeti</value>
+  </data>
+  <data name="ThrowTimeOut" xml:space="preserve">
+    <value>Zaman Aşımı Süresi</value>
+  </data>
+  <data name="ThrowWaitingTime" xml:space="preserve">
+    <value>Fırlatma Bekleme Süresi</value>
+  </data>
+  <data name="TimeScoreFactor" xml:space="preserve">
+    <value>Skor Zaman Çarpanı</value>
+  </data>
+  <data name="TrainingDate" xml:space="preserve">
+    <value>Antreman Tarihi</value>
+  </data>
+  <data name="TrainLog" xml:space="preserve">
+    <value>Antreman Kaydı</value>
+  </data>
+  <data name="EndPoint" xml:space="preserve">
+    <value>Bitiş Noktası</value>
+  </data>
+  <data name="StartPoint" xml:space="preserve">
+    <value>Başlangıç Noktası</value>
+  </data>
+  <data name="ThrowBall" xml:space="preserve">
+    <value>Top Fırlatma</value>
+  </data>
+  <data name="NoRowsToShow" xml:space="preserve">
+    <value>Gösterilecek kayıt bulunamadı</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Şifre Tekrar</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Şifremi Unuttum</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Kayıt Ol</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Beni Hatırla ?</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="Grafic" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
+  <data name="ErrorAdd" xml:space="preserve">
+    <value>Ekleme işlemi başarısız!</value>
+  </data>
+  <data name="ErrorDelete" xml:space="preserve">
+    <value>Silme işlemi başarısız!</value>
+  </data>
+  <data name="ErrorUpdate" xml:space="preserve">
+    <value>Güncelleme işlemi başarısız!</value>
+  </data>
+  <data name="MsgAdd" xml:space="preserve">
+    <value>Ekleme işlemi başarılı.</value>
+  </data>
+  <data name="MsgDelete" xml:space="preserve">
+    <value>Silme işlemi başarılı.</value>
+  </data>
+  <data name="MsgUpdate" xml:space="preserve">
+    <value>Güncelleme işlemi başarılı.</value>
+  </data>
+  <data name="ErrorActionUnsuccess" xml:space="preserve">
+    <value>İşlem başarısız!</value>
+  </data>
+  <data name="Castle1" xml:space="preserve">
+    <value>Kale 1</value>
+  </data>
+  <data name="Castle2" xml:space="preserve">
+    <value>Kale 2</value>
+  </data>
+  <data name="Castle3" xml:space="preserve">
+    <value>Kale 3</value>
+  </data>
+  <data name="Castle4" xml:space="preserve">
+    <value>Kale 4</value>
+  </data>
+  <data name="Castle5" xml:space="preserve">
+    <value>Kale 5</value>
+  </data>
+  <data name="Castle6" xml:space="preserve">
+    <value>Kale 6</value>
+  </data>
+  <data name="Castle7" xml:space="preserve">
+    <value>Kale 7</value>
+  </data>
+  <data name="Castle8" xml:space="preserve">
+    <value>Kale 8</value>
+  </data>
+  <data name="Castle9" xml:space="preserve">
+    <value>Kale 9</value>
+  </data>
+  <data name="ProgressRun" xml:space="preserve">
+    <value>Çalışan Antreaman Mevcut</value>
+  </data>
+  <data name="ClubName" xml:space="preserve">
+    <value>Başakşehir FK</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Veri</value>
+  </data>
+  <data name="Data1" xml:space="preserve">
+    <value>Veri 1</value>
+  </data>
+  <data name="Data10" xml:space="preserve">
+    <value>Veri 10</value>
+  </data>
+  <data name="Data11" xml:space="preserve">
+    <value>Veri11</value>
+  </data>
+  <data name="Data12" xml:space="preserve">
+    <value>Veri12</value>
+  </data>
+  <data name="Data2" xml:space="preserve">
+    <value>Veri 2</value>
+  </data>
+  <data name="Data3" xml:space="preserve">
+    <value>Veri 3</value>
+  </data>
+  <data name="Data4" xml:space="preserve">
+    <value>Veri 4</value>
+  </data>
+  <data name="Data5" xml:space="preserve">
+    <value>Veri 5</value>
+  </data>
+  <data name="Data6" xml:space="preserve">
+    <value>Veri 6</value>
+  </data>
+  <data name="Data7" xml:space="preserve">
+    <value>Veri 7</value>
+  </data>
+  <data name="Data8" xml:space="preserve">
+    <value>Veri 8</value>
+  </data>
+  <data name="Data9" xml:space="preserve">
+    <value>Veri 9</value>
+  </data>
+  <data name="CastleLaserTable" xml:space="preserve">
+    <value>Kale Lazer Tablosu</value>
+  </data>
+  <data name="Data13" xml:space="preserve">
+    <value>Veri 13</value>
+  </data>
+</root>

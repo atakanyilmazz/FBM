@@ -1,0 +1,21 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.LdrM;
+@model LdrVm
+@if (Model == null)
+{
+    return;
+}
+@{
+    ViewBag.Title = Resources.List;
+    ViewBag.HasGrid = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("Create"))
+}
+
+@using (Html.FBMPanel(Resources.Ldr))
+{
+    @Html.Partial("_LdrList", Model.List)
+}

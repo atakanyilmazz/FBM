@@ -1,0 +1,39 @@
+﻿@using FBM.Data.DTO
+@model LiveTrainingDTO
+    <div id="chart2m" style="height:300px;"></div>
+<script>
+    var myChart1 = echarts.init(document.getElementById('chart2m'), theme);
+    myChart1.setOption({
+        title: {
+            text: '',
+            subtext: ''
+        },
+        //theme : theme,
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['Başarılı', 'Başarısız']
+        },
+        toolbox: {
+            show: false
+        },
+        calculable: false,
+        xAxis: [{
+            type: 'category',
+            data: ['Üst Kale', 'Alt Kale']
+        }],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [{
+            name: 'Başarılı',
+            type: 'bar',
+            data: [@Model.Chart3List[0], @Model.Chart3List[2]]
+        }, {
+            name: 'Başarısız',
+            type: 'bar',
+            data: [@Model.Chart3List[1], @Model.Chart3List[3]]
+        }]
+    });
+</script>

@@ -1,0 +1,15 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.CastleM;
+@model CastleVM
+@{
+    ViewBag.Title = Resources.List;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("Create"),buttonPosition:Position.Right)
+}
+@using (Html.FBMPanel(Resources.Castle))
+{
+    @Html.Partial("_CastleList", Model.List)
+}
+

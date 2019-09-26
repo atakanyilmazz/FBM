@@ -1,0 +1,19 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.ThrowingM;
+@model ThrowBallVM
+@{
+    ViewBag.Title = Resources.ThrowBall;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("ThrowBallAltitudeCreate"), buttonPosition: Position.Right,text: Resources.Add + " " + Resources.ThrowBallAltitude)
+@Html.AddNewButton(Url.Action("ThrowBallAngleCreate"), buttonPosition: Position.Right, text: Resources.Add + " " + Resources.ThrowBallAngle)
+}
+@using (Html.FBMPanel(Resources.ThrowBallAltitude, @class: "col-md-6"))
+{
+    @Html.Partial("_ThrowBallAltitudeList", Model.ThrowBallAltitude)
+}
+@using (Html.FBMPanel(Resources.ThrowBallAngle, @class: "col-md-6"))
+{
+    @Html.Partial("_ThrowBallAngleList", Model.ThrowBallAngle)
+}

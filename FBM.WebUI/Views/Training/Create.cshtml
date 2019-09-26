@@ -1,0 +1,31 @@
+﻿@using FBM.Core.Resource;
+@model FBM.Data.Entity.Train.Training
+@{
+    ViewBag.Title = Resources.New;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Training))
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.FBMEditorFor(x => x.Name)
+            @Html.FBMEditorFor(x => x.Desctription)
+            @Html.FBMEditorFor(x => x.ThrowWaitingTime)
+            @Html.FBMEditorFor(x => x.ThrowTimeOut)
+            @Html.FBMEditorFor(x => x.TimeScoreFactor)
+            @Html.FBMEditorFor(x => x.SpeedScoreFactor)
+            @Html.FBMSplit();
+            @Html.FBMSaveButton()
+        }
+    }
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

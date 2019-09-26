@@ -1,0 +1,21 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Train.Target>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Training).Titled(Resources.Training).Sortable(true).Filterable(true);
+    c.Add(y => y.Throwing.Motor).Titled(Resources.Motor).Sortable(true).Filterable(true);
+    c.Add(y => y.Throwing.Name).Titled(Resources.Throwing).Sortable(true).Filterable(true);
+    c.Add(y => y.Castle).Titled(Resources.Castle).Sortable(true).Filterable(true);
+    c.Add(y => y.ThrowingCount).Titled(Resources.ThrowingCount).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Details", "Target", new { id = id }));
+    @Html.EditListItem(Url.Action("Edit", "Target", new { id = id }));
+    @Html.DeleteListItem(Url.Action("Delete", "Target", new { id = id }));
+    @Html.EndActionMenu()
+}

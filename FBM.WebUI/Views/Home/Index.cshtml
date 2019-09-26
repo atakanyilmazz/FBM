@@ -1,0 +1,14 @@
+﻿@using FBM.Core.Resource;
+@{
+    ViewBag.Title = Resources.Home;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.FBMPanel("Takım Tablosu %",@class:"col-md-6"))
+{
+    @Html.Partial("_Chart1")
+}
+@using (Html.FBMPanel("Aylık Takım Gelişim Tablosu", @class: "col-md-6"))
+{
+    @Html.Partial("_Chart2")
+}

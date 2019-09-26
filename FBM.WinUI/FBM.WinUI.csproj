@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8C1B2493-323E-4638-B309-11FBEFD2D428}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FBM.WinUI</RootNamespace>
+    <AssemblyName>FBM.WinUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BallUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BallUnit.Designer.cs">
+      <DependentUpon>BallUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\ActionType.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoalForm.Designer.cs">
+      <DependentUpon>GoalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LDRListen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LDRListen.Designer.cs">
+      <DependentUpon>LDRListen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LED.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LED.Designer.cs">
+      <DependentUpon>LED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Managing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Managing.Designer.cs">
+      <DependentUpon>Managing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrainingShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainingShow.designer.cs">
+      <DependentUpon>TrainingShow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BallUnit.resx">
+      <DependentUpon>BallUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoalForm.resx">
+      <DependentUpon>GoalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LDRListen.resx">
+      <DependentUpon>LDRListen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LED.resx">
+      <DependentUpon>LED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Managing.resx">
+      <DependentUpon>Managing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TrainingShow.resx">
+      <DependentUpon>TrainingShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Station.Castle.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Station.CastleLdrPoint.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Throw.ThrowBallAltitude.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Throw.ThrowBallAngle.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Throw.Throwing.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Train.Target.datasource" />
+    <None Include="Properties\DataSources\FBM.Data.Entity.Train.Training.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FBM.Core.Resource\FBM.Core.Resource.csproj">
+      <Project>{23b4024c-a8da-4031-ac33-1d9a80f146df}</Project>
+      <Name>FBM.Core.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.API\FBM.Data.API.csproj">
+      <Project>{25c58372-5beb-4521-8abc-d26bf135827e}</Project>
+      <Name>FBM.Data.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.DTO\FBM.Data.DTO.csproj">
+      <Project>{7f4bc6ea-8a1e-4077-b896-18eb65cac595}</Project>
+      <Name>FBM.Data.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.Entity\FBM.Data.Entity.csproj">
+      <Project>{64b0f98a-6c57-4193-99d7-5231ef679d1f}</Project>
+      <Name>FBM.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.Enum\FBM.Data.Enum.csproj">
+      <Project>{8eea579a-cf16-4f4e-8213-75fff5ec2ae6}</Project>
+      <Name>FBM.Data.Enum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data\FBM.Data.csproj">
+      <Project>{def65fd9-80f4-41fe-bb98-a5dbdbf4d511}</Project>
+      <Name>FBM.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Enum\FBM.Dll.Enum.csproj">
+      <Project>{1a0b78ce-27b4-4240-b3c5-f6882b3c4396}</Project>
+      <Name>FBM.Dll.Enum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Service\FBM.Dll.Service.csproj">
+      <Project>{ee97f341-d536-403f-aa10-7b727ad62069}</Project>
+      <Name>FBM.Dll.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Struct\FBM.Dll.Struct.csproj">
+      <Project>{9796bbee-37d7-443d-8d71-e352843a5cd3}</Project>
+      <Name>FBM.Dll.Struct</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

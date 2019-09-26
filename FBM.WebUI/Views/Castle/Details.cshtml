@@ -1,0 +1,62 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Station.Castle
+
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("Edit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Castle))
+{
+    using (Html.FBMDl())
+    {
+        @Html.FBMDisplayFor(x => x.Name)
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.Station)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.Station.Name)
+        }
+        @Html.FBMDisplayFor(x => x.WallPosition)
+        @Html.FBMDisplayFor(x => x.CastlePosition)
+        @Html.FBMDisplayFor(x => x.CastleFloor)
+        @Html.FBMDisplayFor(x => x.CastleNo)
+    }
+}
+@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class: "active"))
+            {
+                @Html.FBMTab("castleLdrPoint", Resources.CastleLdrPoint)
+            }
+            using (Html.FBMLi(@class: ""))
+            {
+                @Html.FBMTab("target", Resources.Target)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "castleLdrPoint"))
+            {
+                @Html.Partial("~/Views/CastleLdrPoint/_CastleLdrPointList.cshtml", Model.CastleLdrPoint)
+            }
+            using (Html.FBMDiv("tab-pane", "target"))
+            {
+                @Html.Partial("~/Views/Target/_TargetList.cshtml", Model.Target)
+            }
+        }
+    }
+}

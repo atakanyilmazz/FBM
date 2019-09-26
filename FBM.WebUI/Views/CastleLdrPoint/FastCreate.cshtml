@@ -1,0 +1,57 @@
+﻿@using FBM.Core.Resource;
+@model FBM.WebUI.Models.CastleLdrPointM.CastleLdrPointFastAddVM
+@{
+    ViewBag.Title = Resources.New;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.ListButton(@Url.Action("Index"))
+}
+
+@using (Html.FBMPanel(Resources.CastleLaserTable, @class: "col-md-12 col-sm-12 col-xs-12", colaps: true))
+{
+    using (Html.FBMDiv())
+    {
+        <img src="~/img/CastleLaserTable.JPG" style="max-width: 100%"/>
+    }
+}
+
+@using (Html.FBMPanel(Resources.CastleLdrPoint))
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.FBMDropDownListFor(x => x.StationID, (IEnumerable<SelectListItem>)ViewBag.StationList)
+            @Html.FBMDropDownListFor(x => x.WallPosition, (IEnumerable<SelectListItem>)Enum.GetValues(typeof(WallPosition)).Cast<WallPosition>().Select(v => new SelectListItem { Text = v.ToString(), Value = ((int)v).ToString() }).ToList())
+
+
+            using (Html.FBMDiv(@class: "col-md-6"))
+            {
+                @Html.FBMEditorFor(x => x.Data1)
+                @Html.FBMEditorFor(x => x.Data2)
+                @Html.FBMEditorFor(x => x.Data3)
+                @Html.FBMEditorFor(x => x.Data4)
+                @Html.FBMEditorFor(x => x.Data5)
+                @Html.FBMEditorFor(x => x.Data6)
+            }
+            using (Html.FBMDiv(@class: "col-md-6"))
+            {
+                @Html.FBMEditorFor(x => x.Data7)
+                @Html.FBMEditorFor(x => x.Data8)
+                @Html.FBMEditorFor(x => x.Data9)
+                @Html.FBMEditorFor(x => x.Data10)
+                @Html.FBMEditorFor(x => x.Data11)
+                @Html.FBMEditorFor(x => x.Data12)
+                @Html.FBMEditorFor(x => x.Data13)
+            }
+            @Html.FBMSplit();
+            @Html.FBMSaveButton()
+        }
+    }
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

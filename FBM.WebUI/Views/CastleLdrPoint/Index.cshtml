@@ -1,0 +1,16 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.CastleLdrPointM;
+@model CastleLdrPointVM
+@{
+    ViewBag.Title = Resources.List;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("Create"),buttonPosition:Position.Right)
+    @Html.AddNewButton(Url.Action("FastCreate"), buttonPosition: Position.Right,text:"Çoklu Ekle")
+}
+}
+@using (Html.FBMPanel(Resources.CastleLdrPoint))
+{
+    @Html.Partial("_CastleLdrPointList", Model.List)
+}

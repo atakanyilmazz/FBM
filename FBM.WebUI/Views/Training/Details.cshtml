@@ -1,0 +1,55 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Train.Training
+
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("Edit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Training))
+{
+    using (Html.FBMDl())
+    {
+        @Html.FBMDisplayFor(x => x.Name)
+        @Html.FBMDisplayFor(x => x.Desctription)
+        @Html.FBMDisplayFor(x => x.ThrowWaitingTime)
+        @Html.FBMDisplayFor(x => x.ThrowTimeOut)
+        @Html.FBMDisplayFor(x => x.TimeScoreFactor)
+        @Html.FBMDisplayFor(x => x.SpeedScoreFactor)
+    }
+}
+@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class: "active"))
+            {
+                @Html.FBMTab("target", Resources.Target)
+            }
+            using (Html.FBMLi(@class: ""))
+            {
+                @Html.FBMTab("playerTraining", Resources.PlayerTraining)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "target"))
+            {
+                @Html.Partial("~/Views/Target/_TargetList.cshtml", Model.Target)
+            }
+            using (Html.FBMDiv("tab-pane", "playerTraining"))
+            {
+                @Html.Partial("~/Views/PlayerTraining/_PlayerTrainingList.cshtml", Model.PlayerTraining)
+            }
+        }
+    }
+}

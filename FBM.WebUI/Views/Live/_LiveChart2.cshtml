@@ -1,0 +1,87 @@
+﻿@using FBM.Data.DTO
+@model LiveTrainingDTO
+
+
+<div class="col-md-6">
+    <div id="chart1" style="height:300px;"></div>
+</div>
+<div class="col-md-6">
+    <div id="chart2m" style="height:300px;"></div>
+</div>
+
+
+
+@Html.FBMClearFix()
+
+
+<script>
+    var myChart1 = echarts.init(document.getElementById('chart1'), theme);
+    myChart1.setOption({
+        title: {
+            text: '',
+            subtext: ''
+        },
+        //theme : theme,
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['Başarılı', 'Başarısız']
+        },
+        toolbox: {
+            show: false
+        },
+        calculable: false,
+        xAxis: [{
+            type: 'category',
+            data: ['Sol Taraf', 'Orta', 'Sağ Taraf']
+        }],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [{
+            name: 'Başarılı',
+            type: 'bar',
+            data: [@Model.Chart2List[0], @Model.Chart2List[2], @Model.Chart2List[4]]
+        }, {
+            name: 'Başarısız',
+            type: 'bar',
+            data: [@Model.Chart2List[1], @Model.Chart2List[3], @Model.Chart2List[5]]
+        }]
+    });
+
+    var myChart1 = echarts.init(document.getElementById('chart2m'), theme);
+    myChart1.setOption({
+        title: {
+            text: '',
+            subtext: ''
+        },
+        //theme : theme,
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['Başarılı', 'Başarısız']
+        },
+        toolbox: {
+            show: false
+        },
+        calculable: false,
+        xAxis: [{
+            type: 'category',
+            data: ['Üst Kale', 'Alt Kale']
+        }],
+        yAxis: [{
+            type: 'value'
+        }],
+        series: [{
+            name: 'Başarılı',
+            type: 'bar',
+            data: [@Model.Chart3List[0], @Model.Chart3List[2]]
+        }, {
+            name: 'Başarısız',
+            type: 'bar',
+            data: [@Model.Chart3List[1], @Model.Chart3List[3]]
+        }]
+    });
+</script>

@@ -1,0 +1,19 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Players.PlayerTraining>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Player.Name).Titled(Resources.Player).Sortable(true).Filterable(true);
+    c.Add(y => y.Training.Name).Titled(Resources.Training).Sortable(true).Filterable(true);
+    c.Add(y => y.TrainingDate).Titled(Resources.TrainingDate).Sortable(true).Filterable(true);
+    c.Add(y => y.TimeScore).Titled(Resources.TimeScore).Sortable(true).Filterable(true);
+    c.Add(y => y.SpeedScore).Titled(Resources.SpeedScore).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Result", "PlayerTraining", new { id = id }));
+    @Html.EndActionMenu()
+}

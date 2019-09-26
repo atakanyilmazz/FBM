@@ -1,0 +1,66 @@
+﻿
+<canvas id="myChart2"></canvas>
+
+
+<script>
+    var ctx = document.getElementById("myChart2");
+
+
+    //var mixedChart = new Chart(ctx, {
+    //    type: 'bar',
+    //    data: {
+    //        datasets: [{
+    //            label: 'Bar Dataset',
+    //            backgroundColor: "rgba(0,85,220,1",
+    //            data: [10, 20, 30, 40]
+    //        },
+    //        {
+    //            label: 'Bar Dataset2',
+    //            backgroundColor: "rgba(0,85,220,1",
+    //            data: [10, 20, 30, 40]
+    //        },
+    //        {
+    //            label: 'Line Dataset',
+    //            backgroundColor: "rgba(255,165,0,0.5)",
+    //            data: [50, 30, 50, 50],
+
+    //            // Changes this dataset to become a line
+    //            type: 'line'
+    //        }],
+    //        labels: ['January', 'February', 'March', 'April']
+    //    },
+   
+    //});
+
+
+
+
+
+
+
+
+
+
+
+    let chartc = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Gelişim Tablosu %',
+                backgroundColor: "rgba(255,165,0,0.5)",
+                data: [65, 72, 75, 80]
+            }],
+            labels: ['Ekim', 'Kasım', 'Aralık', 'Ocak']
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: 50,
+                        suggestedMax: 100
+                }
+                }]
+    }
+    }
+    });
+</script>

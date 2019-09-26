@@ -1,0 +1,26 @@
+﻿<canvas id="myChart"></canvas>
+
+<script>
+    var ctx = document.getElementById("myChart");
+
+    let chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            datasets: [{
+                label: 'Başakşehir FK',
+                backgroundColor: "rgba(255,165,0,0.5)",
+                data: [74, 72, 68, 76, 80]
+            }],
+            labels: ['Genel', 'Düz Top', 'Ters Top', 'Sol Top', 'Sağ Top']
+        },
+        options: {
+            scale: {
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+
+</script>

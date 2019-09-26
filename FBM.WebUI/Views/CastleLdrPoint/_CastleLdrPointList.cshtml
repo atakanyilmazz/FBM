@@ -1,0 +1,20 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Station.CastleLdrPoint>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Castle.Name).Titled(Resources.Castle).Sortable(true).Filterable(true);
+    c.Add(y => y.Axis).Titled(Resources.Axis).Sortable(true).Filterable(true);
+    c.Add(y => y.StartPoint).Titled(Resources.StartPoint).Sortable(true).Filterable(true);
+    c.Add(y => y.EndPoint).Titled(Resources.EndPoint).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Details", "CastleLdrPoint", new { id = id }));
+    @Html.EditListItem(Url.Action("Edit", "CastleLdrPoint", new { id = id }));
+    @Html.DeleteListItem(Url.Action("Delete", "CastleLdrPoint", new { id = id }));
+    @Html.EndActionMenu()
+}

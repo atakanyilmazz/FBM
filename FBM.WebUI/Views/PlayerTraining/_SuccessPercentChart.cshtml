@@ -1,0 +1,76 @@
+﻿@using FBM.Data.DTO
+@model LiveTrainingDTO
+<center><div id="echart_donut" style="height:350px; margin-top:-60px;"></div></center>
+
+<script>
+        var myChart = echarts.init(document.getElementById('echart_donut'), theme);
+        myChart.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            calculable: false,
+            legend: {
+                //orient: 'vertical',
+                //x: 'left',
+                x: 'center',
+                y: 'bottom',
+                data: ['Başarılı', 'Başarısız']
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    magicType: {
+                        show: false,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'center',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore: {
+                        show: false
+                    },
+                    saveAsImage: {
+                        show: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Başarı Durumu',
+                type: 'pie',
+                radius: ['35%', '55%'],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true
+                        },
+                        labelLine: {
+                            show: true
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: false,
+                            position: 'center',
+                            textStyle: {
+                                fontSize: '14',
+                                fontWeight: 'normal'
+                            }
+                        }
+                    }
+                },
+                data: [{
+                    value: @Model.SuccessGoalCount,
+                    name: 'Başarılı'
+                }, {
+                    value: @Model.UnSuccessGoalCount,
+                    name: 'Başarısız'
+                }]
+            }]
+        });
+</script>

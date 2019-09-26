@@ -1,0 +1,270 @@
+﻿@using FBM.WebUI.Properties
+@using FBM.Data.DTO
+@model LiveTrainingDTO
+@{
+    //ViewBag.Title = Resources.Training + " " + Html.DisplayFor(x => x.PlayerName) + " " + @Html.DisplayFor(x => x.TrainingName);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.FBMDiv("col-md-5 col-sm-12 col-xs-12"))
+{
+    using (Html.FBMPanel(@Resources.GoalStatus, @class: "col-md-12 col-sm-12 col-xs-12", colaps: true))
+    {
+        using (Html.FBMDiv(id: "chart"))
+        {
+            @Html.Partial("_liveChart", Model)
+        }
+    }
+    using (Html.FBMPanel(@Resources.Camera, @class: "col-md-12 col-sm-12 col-xs-12", colaps: true))
+    {
+        <center>
+            <table class="500" border="1">
+                <tr>
+                    <td id="T007" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="T006" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="C010" class="cellToClear">&nbsp;</td>
+                    <td id="C011" class="cellToClear">&nbsp;</td>
+                    <td id="C012" class="cellToClear">&nbsp;</td>
+                    <td id="C013" class="cellToClear">&nbsp;</td>
+                    <td id="C014" class="cellToClear">&nbsp;</td>
+                    <td id="C015" class="cellToClear">&nbsp;</td>
+                    <td id="C016" class="cellToClear">&nbsp;</td>
+                    <td id="C017" class="cellToClear">&nbsp;</td>
+                    <td id="C018" class="cellToClear">&nbsp;</td>
+                    <td id="T000" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="T001" class="cellToClear" rowspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C000" class="cellToClear">&nbsp;</td>
+                    <td id="C001" class="cellToClear">&nbsp;</td>
+                    <td id="C002" class="cellToClear">&nbsp;</td>
+                    <td id="C003" class="cellToClear">&nbsp;</td>
+                    <td id="C004" class="cellToClear">&nbsp;</td>
+                    <td id="C005" class="cellToClear">&nbsp;</td>
+                    <td id="C006" class="cellToClear">&nbsp;</td>
+                    <td id="C007" class="cellToClear">&nbsp;</td>
+                    <td id="C008" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="50" id="C418" class="cellToClear">&nbsp;</td>
+                    <td width="50" id="C408" class="cellToClear">&nbsp;</td>
+                    <td colspan="9" rowspan="9">
+                        @*<span id="frame"></span>*@
+                        <input type="image" name="NewPosition" src="http://@(Settings.Default.CameraIp)/nphMotionJpeg?Resolution=640x480&Quality=Standard" width="420" height="340" border="0">
+                    <td width="50" id="C300" class="cellToClear">&nbsp;</td>
+                    <td width="50" id="C310" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C417" class="cellToClear">&nbsp;</td>
+                    <td id="C407" class="cellToClear">&nbsp;</td>
+                    <td id="C301" class="cellToClear">&nbsp;</td>
+                    <td id="C311" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C416" class="cellToClear">&nbsp;</td>
+                    <td id="C406" class="cellToClear">&nbsp;</td>
+                    <td id="C302" class="cellToClear">&nbsp;</td>
+                    <td id="C312" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C415" class="cellToClear">&nbsp;</td>
+                    <td id="C405" class="cellToClear">&nbsp;</td>
+                    <td id="C303" class="cellToClear">&nbsp;</td>
+                    <td id="C313" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C414" class="cellToClear">&nbsp;</td>
+                    <td id="C404" class="cellToClear">&nbsp;</td>
+                    <td id="C304" class="cellToClear">&nbsp;</td>
+                    <td id="C314" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C413" class="cellToClear">&nbsp;</td>
+                    <td id="C403" class="cellToClear">&nbsp;</td>
+                    <td id="C305" class="cellToClear">&nbsp;</td>
+                    <td id="C315" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C412" class="cellToClear">&nbsp;</td>
+                    <td id="C402" class="cellToClear">&nbsp;</td>
+                    <td id="C306" class="cellToClear">&nbsp;</td>
+                    <td id="C316" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C411" class="cellToClear">&nbsp;</td>
+                    <td id="C401" class="cellToClear">&nbsp;</td>
+                    <td id="C307" class="cellToClear">&nbsp;</td>
+                    <td id="C317" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C410" class="cellToClear">&nbsp;</td>
+                    <td id="C400" class="cellToClear">&nbsp;</td>
+                    <td id="C308" class="cellToClear">&nbsp;</td>
+                    <td id="C318" class="cellToClear">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="T005" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="T004" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="C108" class="cellToClear">&nbsp;</td>
+                    <td id="C107" class="cellToClear">&nbsp;</td>
+                    <td id="C106" class="cellToClear">&nbsp;</td>
+                    <td id="C105" class="cellToClear">&nbsp;</td>
+                    <td id="C104" class="cellToClear">&nbsp;</td>
+                    <td id="C103" class="cellToClear">&nbsp;</td>
+                    <td id="C102" class="cellToClear">&nbsp;</td>
+                    <td id="C101" class="cellToClear">&nbsp;</td>
+                    <td id="C100" class="cellToClear">&nbsp;</td>
+                    <td id="T002" class="cellToClear" rowspan="2">&nbsp;</td>
+                    <td id="T003" class="cellToClear" rowspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="C118" class="cellToClear">&nbsp;</td>
+                    <td id="C117" class="cellToClear">&nbsp;</td>
+                    <td id="C116" class="cellToClear">&nbsp;</td>
+                    <td id="C115" class="cellToClear">&nbsp;</td>
+                    <td id="C114" class="cellToClear">&nbsp;</td>
+                    <td id="C113" class="cellToClear">&nbsp;</td>
+                    <td id="C112" class="cellToClear">&nbsp;</td>
+                    <td id="C111" class="cellToClear">&nbsp;</td>
+                    <td id="C110" class="cellToClear">&nbsp;</td>
+                </tr>
+            </table>
+        </center>
+    }
+}
+@using (Html.FBMDiv("col-md-7 col-sm-12 col-xs-12"))
+{
+    using (Html.FBMPanel(@Resources.Log, @class: "col-md-12 col-sm-12 col-xs-12", colaps: true))
+    {
+        <h4><p class="text-primary" id="liveStatus"></p></h4>
+        using (Html.FBMDiv(id: "grid"))
+        {
+            @Html.Partial("_liveGrid", Model)
+        }
+    }
+    using (Html.FBMPanel(@Resources.Grafic, @class: "col-md-12 col-sm-12 col-xs-12", colaps: true))
+    {
+        using (Html.FBMDiv(id: "chart2"))
+        {
+            <center>@Html.Partial("_LiveChart2", Model)</center>
+        }
+    }
+}
+@*Yeni chart kullanılan kalelere olan başarılı ve başarısız sayıları*@
+@section scripts {
+    <script type="text/javascript">
+        var isLiveHubInitialized = false;
+        var isGoalChartHubInitialized = false;
+        var responseId = 0;
+        $(function () {
+            LiveHubInitialize();
+            ReloadIndexPartial();
+        });
+
+        function LiveHubInitialize() {
+            if (isLiveHubInitialized)
+                return;
+            try {
+                $.connection.hub.url = 'http://@(Settings.Default.ApiAdress)/signalr';
+                var clientHub = $.connection.liveTrainingHub;
+
+                $.connection.hub.start().done(function () {
+                    clientHub.server.initialize();
+                    isLiveHubInitialized = true;
+                });
+                clientHub.client.broadcastMessage = function (message) {
+                    if (message === "HasChange")
+                        ReloadIndexPartial();
+                };
+            } catch (err) {
+                isLiveHubInitialized = false;
+            }
+        };
+
+
+        function ReloadIndexPartial() {
+            var reloadCharts = true;
+            $.get("@Url.Action("GetLiveDataJson","Live")", function (data) {
+                debugger;
+                    $(".cellToClear").css('background-color', 'white');
+                    if (data.Val == 0) {
+                        $('#liveStatus').text("@Resources.TrainingStarting");
+                    } else if (data.Val == 1 || data.Val == 5) {
+                        $('#liveStatus').text("@Resources.BallThrown");
+                        reloadCharts = false;
+                    } else if (data.Val == 2) {
+                        $('#liveStatus').text("@Resources.GoalSuccess");
+                    } else if (data.Val == 4) {
+                        $('#liveStatus').text("@Resources.GoalUnSuccess");
+                    }
+                    else if (data.Val == 6) {
+                        $('#liveStatus').text("Antreman Bitti");
+                        $('.liveLi').addClass('hidden');
+                    }
+
+                if (data.R1 != "-" || data.R1 != null) {
+                    $('#' + data.R1.split("-")[0]).css('background-color', data.R1.split("-")[1]);
+                }
+                if (data.R2 != "-" || data.R1 != null) {
+                    $('#' + data.R2.split("-")[0]).css('background-color', data.R2.split("-")[1]);
+                }
+
+                function GetColorByCount(count, id) {
+                    $('#' + id).css('text-align', 'center');
+                    $('#' + id).text(count);
+                    if (count > 0) {
+                        $('#' + id).css('background-color', 'green');
+                    } else if (count == 0) {
+                        $('#' + id).css('background-color', 'red');
+                    } else {
+                        $('#' + id).css('background-color', 'green');
+                        $('#' + id).text("?");
+                    }
+                };
+
+                GetColorByCount(data.S0C, "T000");
+                GetColorByCount(data.S1C, "T001");
+                GetColorByCount(data.S2C, "T002");
+                GetColorByCount(data.S3C, "T003");
+                GetColorByCount(data.S4C, "T004");
+                GetColorByCount(data.S5C, "T005");
+                GetColorByCount(data.S6C, "T006");
+                GetColorByCount(data.S7C, "T007");
+
+                if (data.StationNo != "" || data.StationNo != null) {
+                    $('#' + data.StationNo).css('background-color', 'blue');
+                }
+            });
+            if (reloadCharts == true) {
+                var url_liveChart = "@(Url.Action("_liveChart", "Live", new { id = Model.PlayerTrainingId, responseId = "__ID__" }, Request.Url.Scheme))"
+                url_liveChart = url_liveChart.replace("__ID__", responseId);
+
+                var url_liveGrid = "@(Url.Action("_liveGrid", "Live", new { id = Model.PlayerTrainingId, responseId = "__ID__" }, Request.Url.Scheme))"
+                url_liveGrid = url_liveGrid.replace("__ID__", responseId);
+
+                var url_liveChart2 = "@(Url.Action("_liveChart2", "Live", new { id = Model.PlayerTrainingId, responseId = "__ID__" }, Request.Url.Scheme))"
+                url_liveChart2 = url_liveChart2.replace("__ID__", responseId);
+
+                $.post(url_liveChart)
+                    .done(function (response) {
+                        $("#chart").html(response);
+                        if (!isLiveHubInitialized)
+                            LiveHubInitialize();
+                    });
+                $.post(url_liveGrid)
+                    .done(function (response) {
+                        $("#grid").html(response);
+                        if (!isLiveHubInitialized)
+                            LiveHubInitialize();
+                    });
+                $.post(url_liveChart2)
+                    .done(function (response) {
+                        $("#chart2").html(response);
+                        if (!isLiveHubInitialized)
+                            LiveHubInitialize();
+                    });
+                responseId++;
+            }
+        };
+    </script>
+}

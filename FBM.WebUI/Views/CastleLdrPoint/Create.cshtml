@@ -1,0 +1,38 @@
+﻿@using FBM.Core.Resource;
+@model FBM.WebUI.Models.CastleLdrPointM.CastleLdrPointAddVM
+@{
+    ViewBag.Title = Resources.New;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.CastleLdrPoint))
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.FBMDropDownListFor(x => x.CastleId, (IEnumerable<SelectListItem>)ViewBag.CastleList)
+
+
+            using (Html.FBMPanel(Axis.X.ToString(),@class: "col-md-6"))
+            {
+                @Html.FBMEditorFor(x => x.XStartPoint)
+                @Html.FBMEditorFor(x => x.XEndPoint)
+            }
+            using (Html.FBMPanel(Axis.Y.ToString(), @class: "col-md-6"))
+            {
+                @Html.FBMEditorFor(x => x.YStartPoint)
+                @Html.FBMEditorFor(x => x.YEndPoint)
+            }
+            @Html.FBMSplit();
+            @Html.FBMSaveButton()
+        }
+    }
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

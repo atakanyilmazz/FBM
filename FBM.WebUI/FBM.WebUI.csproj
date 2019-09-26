@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{228BFDBE-2A72-4A65-9932-5ED678FF133C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FBM.WebUI</RootNamespace>
+    <AssemblyName>FBM.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Chart.Mvc, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Chart.Mvc.1.0.0.2\lib\net45\Chart.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PlayerTrainingController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TrainingController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\CastleLdrPointController.cs" />
+    <Compile Include="Controllers\TargetController.cs" />
+    <Compile Include="Controllers\ThrowBallController.cs" />
+    <Compile Include="Controllers\ThrowingController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LdrController.cs" />
+    <Compile Include="Controllers\LiveController.cs" />
+    <Compile Include="Controllers\CastleController.cs" />
+    <Compile Include="Controllers\MotorController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\AnchorExtensions.cs" />
+    <Compile Include="Helper\ButtonExtensions.cs" />
+    <Compile Include="Helper\DisposableExtensions.cs" />
+    <Compile Include="Helper\Message.cs" />
+    <Compile Include="Helper\MessageType.cs" />
+    <Compile Include="Models\Account\LoginRegisterVM.cs" />
+    <Compile Include="Models\CastleLdrPointM\CastleLdrPointFastAddVM.cs" />
+    <Compile Include="Models\CastleLdrPointM\CastleLdrPointAddVM.cs" />
+    <Compile Include="Models\CastleLdrPointM\CastleLdrPointVM.cs" />
+    <Compile Include="Models\CastleM\CastleVM.cs" />
+    <Compile Include="Models\LdrM\LdrVm.cs" />
+    <Compile Include="Models\LiveDataVM.cs" />
+    <Compile Include="Models\LiveTrainingVM.cs" />
+    <Compile Include="Models\MotorM\MotorVM.cs" />
+    <Compile Include="Models\PlayerM\PlayerVM.cs" />
+    <Compile Include="Models\StartTrainingVM.cs" />
+    <Compile Include="Models\StationM\StationVm.cs" />
+    <Compile Include="Models\TargetM\TargetVM.cs" />
+    <Compile Include="Models\ThrowingM\ThrowBallVM.cs" />
+    <Compile Include="Models\ThrowingM\ThrowingVM.cs" />
+    <Compile Include="Models\TrainingM\TrainingVM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
+    <None Include="Properties\PublishProfiles\asd.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="img\CastleLaserTable.JPG" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\deleteItem.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.tr.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Template\css\animate.min.css" />
+    <Content Include="Template\css\bootstrap.min.css" />
+    <Content Include="Template\css\calendar\fullcalendar.css" />
+    <Content Include="Template\css\calendar\fullcalendar.min.css" />
+    <Content Include="Template\css\calendar\fullcalendar.print.css" />
+    <Content Include="Template\css\colorpicker\bootstrap-colorpicker.min.css" />
+    <Content Include="Template\css\colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Template\css\colorpicker\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Template\css\colorpicker\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Template\css\colorpicker\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Template\css\colorpicker\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Template\css\custom.css" />
+    <Content Include="Template\css\datatables\css\demo_page.css" />
+    <Content Include="Template\css\datatables\css\demo_table.css" />
+    <Content Include="Template\css\datatables\css\demo_table_jui.css" />
+    <Content Include="Template\css\datatables\css\jquery.dataTables.css" />
+    <Content Include="Template\css\datatables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Template\css\datatables\images\back_disabled.png" />
+    <Content Include="Template\css\datatables\images\back_enabled.png" />
+    <Content Include="Template\css\datatables\images\back_enabled_hover.png" />
+    <Content Include="Template\css\datatables\images\favicon.ico" />
+    <Content Include="Template\css\datatables\images\forward_disabled.png" />
+    <Content Include="Template\css\datatables\images\forward_enabled.png" />
+    <Content Include="Template\css\datatables\images\forward_enabled_hover.png" />
+    <Content Include="Template\css\datatables\images\sort_asc.png" />
+    <Content Include="Template\css\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Template\css\datatables\images\sort_both.png" />
+    <Content Include="Template\css\datatables\images\sort_desc.png" />
+    <Content Include="Template\css\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Template\css\datatables\tools\css\dataTables.tableTools.css" />
+    <Content Include="Template\css\editor\external\google-code-prettify\prettify.css" />
+    <Content Include="Template\css\editor\index.css" />
+    <Content Include="Template\css\floatexamples.css" />
+    <Content Include="Template\css\icheck\flat\aero%402x.png" />
+    <Content Include="Template\css\icheck\flat\aero.css" />
+    <Content Include="Template\css\icheck\flat\aero.png" />
+    <Content Include="Template\css\icheck\flat\blue%402x.png" />
+    <Content Include="Template\css\icheck\flat\blue.css" />
+    <Content Include="Template\css\icheck\flat\blue.png" />
+    <Content Include="Template\css\icheck\flat\flat%402x.png" />
+    <Content Include="Template\css\icheck\flat\flat.css" />
+    <Content Include="Template\css\icheck\flat\flat.png" />
+    <Content Include="Template\css\icheck\flat\green%402x.png" />
+    <Content Include="Template\css\icheck\flat\green.css" />
+    <Content Include="Template\css\icheck\flat\green.png" />
+    <Content Include="Template\css\icheck\flat\grey%402x.png" />
+    <Content Include="Template\css\icheck\flat\grey.css" />
+    <Content Include="Template\css\icheck\flat\grey.png" />
+    <Content Include="Template\css\icheck\flat\orange%402x.png" />
+    <Content Include="Template\css\icheck\flat\orange.css" />
+    <Content Include="Template\css\icheck\flat\orange.png" />
+    <Content Include="Template\css\icheck\flat\pink%402x.png" />
+    <Content Include="Template\css\icheck\flat\pink.css" />
+    <Content Include="Template\css\icheck\flat\pink.png" />
+    <Content Include="Template\css\icheck\flat\purple%402x.png" />
+    <Content Include="Template\css\icheck\flat\purple.css" />
+    <Content Include="Template\css\icheck\flat\purple.png" />
+    <Content Include="Template\css\icheck\flat\red%402x.png" />
+    <Content Include="Template\css\icheck\flat\red.css" />
+    <Content Include="Template\css\icheck\flat\red.png" />
+    <Content Include="Template\css\icheck\flat\yellow%402x.png" />
+    <Content Include="Template\css\icheck\flat\yellow.css" />
+    <Content Include="Template\css\icheck\flat\yellow.png" />
+    <Content Include="Template\css\icheck\flat\_all.css" />
+    <Content Include="Template\css\ion.rangeSlider.css" />
+    <Content Include="Template\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Template\css\maps\jquery-jvectormap-2.0.3.css" />
+    <Content Include="Template\css\normalize.css" />
+    <Content Include="Template\css\nprogress.css" />
+    <Content Include="Template\css\progressbar\bootstrap-progressbar-3.3.0.css" />
+    <Content Include="Template\css\select\select2.min.css" />
+    <Content Include="Template\css\switchery\switchery.min.css" />
+    <Content Include="Template\fonts\css\font-awesome.css" />
+    <Content Include="Template\fonts\css\font-awesome.min.css" />
+    <Content Include="Template\fonts\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Template\images\1.png" />
+    <Content Include="Template\images\4.jpg" />
+    <Content Include="Template\images\american-express.png" />
+    <Content Include="Template\images\back_disabled.png" />
+    <Content Include="Template\images\back_enabled.png" />
+    <Content Include="Template\images\back_enabled_hover.png" />
+    <Content Include="Template\images\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Template\images\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Template\images\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Template\images\bootstrap-colorpicker\hue.png" />
+    <Content Include="Template\images\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Template\images\british.png" />
+    <Content Include="Template\images\btt.jpg" />
+    <Content Include="Template\images\data.png" />
+    <Content Include="Template\images\dilek.png" />
+    <Content Include="Template\images\favicon.ico" />
+    <Content Include="Template\images\forward_disabled.png" />
+    <Content Include="Template\images\forward_enabled.png" />
+    <Content Include="Template\images\forward_enabled_hover.png" />
+    <Content Include="Template\images\icons.png" />
+    <Content Include="Template\images\img.jpg" />
+    <Content Include="Template\images\loading.gif" />
+    <Content Include="Template\images\mastercard.png" />
+    <Content Include="Template\images\paypal2.png" />
+    <Content Include="Template\images\picture-2.jpg" />
+    <Content Include="Template\images\picture.jpg" />
+    <Content Include="Template\images\picture2.jpg" />
+    <Content Include="Template\images\prod1.jpg" />
+    <Content Include="Template\images\prod2.jpg" />
+    <Content Include="Template\images\prod3.jpg" />
+    <Content Include="Template\images\prod4.jpg" />
+    <Content Include="Template\images\prod5.jpg" />
+    <Content Include="Template\images\sprite-skin-flat.png" />
+    <Content Include="Template\images\sprite-skin-modern.png" />
+    <Content Include="Template\images\sprite-skin-nice.png" />
+    <Content Include="Template\images\sprite-skin-simple.png" />
+    <Content Include="Template\images\user.png" />
+    <Content Include="Template\images\visa.png" />
+    <Content Include="Template\js\autocomplete\countries.js" />
+    <Content Include="Template\js\autocomplete\jquery.autocomplete.js" />
+    <Content Include="Template\js\bootstrap.min.js" />
+    <Content Include="Template\js\calendar\fullcalendar.min.js" />
+    <Content Include="Template\js\chartjs\chart.min.js" />
+    <Content Include="Template\js\colorpicker\bootstrap-colorpicker.min.js" />
+    <Content Include="Template\js\colorpicker\docs.js" />
+    <Content Include="Template\js\cropping\cropper.min.js" />
+    <Content Include="Template\js\cropping\main.js" />
+    <Content Include="Template\js\cropping\main2.js" />
+    <Content Include="Template\js\custom.js" />
+    <Content Include="Template\js\datatables\buttons.bootstrap.min.css" />
+    <Content Include="Template\js\datatables\buttons.bootstrap.min.js" />
+    <Content Include="Template\js\datatables\buttons.html5.min.js" />
+    <Content Include="Template\js\datatables\buttons.print.min.js" />
+    <Content Include="Template\js\datatables\dataTables.bootstrap.js" />
+    <Content Include="Template\js\datatables\dataTables.buttons.min.js" />
+    <Content Include="Template\js\datatables\dataTables.fixedHeader.min.js" />
+    <Content Include="Template\js\datatables\dataTables.keyTable.min.js" />
+    <Content Include="Template\js\datatables\dataTables.responsive.min.js" />
+    <Content Include="Template\js\datatables\dataTables.scroller.min.js" />
+    <Content Include="Template\js\datatables\fixedHeader.bootstrap.min.css" />
+    <Content Include="Template\js\datatables\jquery.dataTables.min.css" />
+    <Content Include="Template\js\datatables\jquery.dataTables.min.js" />
+    <Content Include="Template\js\datatables\jszip.min.js" />
+    <Content Include="Template\js\datatables\pdfmake.min.js" />
+    <Content Include="Template\js\datatables\responsive.bootstrap.min.css" />
+    <Content Include="Template\js\datatables\responsive.bootstrap.min.js" />
+    <Content Include="Template\js\datatables\scroller.bootstrap.min.css" />
+    <Content Include="Template\js\datatables\vfs_fonts.js" />
+    <Content Include="Template\js\datepicker\daterangepicker.js" />
+    <Content Include="Template\js\dropzone\dropzone.js" />
+    <Content Include="Template\js\easypie\jquery.easypiechart.min.js" />
+    <Content Include="Template\js\echart\echarts-all.js" />
+    <Content Include="Template\js\echart\green.js" />
+    <Content Include="Template\js\editor\bootstrap-wysiwyg.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-apollo.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-basic.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-clj.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-css.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-dart.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-erlang.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-go.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-hs.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-lisp.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-llvm.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-lua.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-matlab.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-ml.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-mumps.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-n.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-pascal.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-proto.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-r.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-rd.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-scala.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-sql.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-tcl.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-tex.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-vb.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-vhdl.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-wiki.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-xq.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\lang-yaml.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\prettify.js" />
+    <Content Include="Template\js\editor\external\google-code-prettify\run_prettify.js" />
+    <Content Include="Template\js\editor\external\jquery.hotkeys.js" />
+    <Content Include="Template\js\flot\curvedLines.js" />
+    <Content Include="Template\js\flot\date.js" />
+    <Content Include="Template\js\flot\jquery.flot.js" />
+    <Content Include="Template\js\flot\jquery.flot.orderBars.js" />
+    <Content Include="Template\js\flot\jquery.flot.pie.js" />
+    <Content Include="Template\js\flot\jquery.flot.resize.js" />
+    <Content Include="Template\js\flot\jquery.flot.spline.js" />
+    <Content Include="Template\js\flot\jquery.flot.stack.js" />
+    <Content Include="Template\js\flot\jquery.flot.time.min.js" />
+    <Content Include="Template\js\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Template\js\gauge\gauge.min.js" />
+    <Content Include="Template\js\gauge\gauge_demo.js" />
+    <Content Include="Template\js\icheck\icheck.min.js" />
+    <Content Include="Template\js\input_mask\jquery.inputmask.js" />
+    <Content Include="Template\js\ion_range\ion.rangeSlider.min.js" />
+    <Content Include="Template\js\jquery.min.js" />
+    <Content Include="Template\js\knob\jquery.knob.min.js" />
+    <Content Include="Template\js\maps\gdp-data.js" />
+    <Content Include="Template\js\maps\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Template\js\maps\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="Template\js\maps\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Template\js\moment\moment.min.js" />
+    <Content Include="Template\js\moris\example.js" />
+    <Content Include="Template\js\moris\morris.min.js" />
+    <Content Include="Template\js\moris\raphael-min.js" />
+    <Content Include="Template\js\nicescroll\jquery.nicescroll.min.js" />
+    <Content Include="Template\js\notify\pnotify.buttons.js" />
+    <Content Include="Template\js\notify\pnotify.core.js" />
+    <Content Include="Template\js\notify\pnotify.nonblock.js" />
+    <Content Include="Template\js\nprogress.js" />
+    <Content Include="Template\js\pace\pace.min.js" />
+    <Content Include="Template\js\parsley\parsley.min.js" />
+    <Content Include="Template\js\progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Template\js\select\select2.full.js" />
+    <Content Include="Template\js\sidebar\classie.js" />
+    <Content Include="Template\js\sidebar\component.css" />
+    <Content Include="Template\js\sidebar\modernizr.custom.js" />
+    <Content Include="Template\js\sidebar\sidebarEffects.js" />
+    <Content Include="Template\js\skycons\skycons.min.js" />
+    <Content Include="Template\js\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Template\js\switchery\switchery.min.js" />
+    <Content Include="Template\js\tags\jquery.tagsinput.min.js" />
+    <Content Include="Template\js\textarea\autosize.min.js" />
+    <Content Include="Template\js\validator\validator.js" />
+    <Content Include="Template\js\wizard\jquery.smartWizard.js" />
+    <Content Include="Template\less\custom.css" />
+    <Content Include="Template\sweetAlert\animate.css" />
+    <Content Include="Template\sweetAlert\sweetalert2.css" />
+    <Content Include="Template\sweetAlert\sweetalert2.js" />
+    <Content Include="Template\sweetAlert\sweetalert2.min.css" />
+    <Content Include="Template\sweetAlert\sweetalert2.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Live\StartTraining.cshtml" />
+    <Content Include="Views\Live\Index.cshtml" />
+    <Content Include="Template\css\datatables\images\Sorting icons.psd" />
+    <Content Include="Template\fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="Template\fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Template\fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\fonts\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Template\fonts\fonts\FontAwesome.otf" />
+    <Content Include="Template\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Template\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Template\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Template\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Template\fonts\less\animated.less" />
+    <Content Include="Template\fonts\less\bordered-pulled.less" />
+    <Content Include="Template\fonts\less\core.less" />
+    <Content Include="Template\fonts\less\fixed-width.less" />
+    <Content Include="Template\fonts\less\font-awesome.less" />
+    <Content Include="Template\fonts\less\icons.less" />
+    <Content Include="Template\fonts\less\larger.less" />
+    <Content Include="Template\fonts\less\list.less" />
+    <Content Include="Template\fonts\less\mixins.less" />
+    <Content Include="Template\fonts\less\path.less" />
+    <Content Include="Template\fonts\less\rotated-flipped.less" />
+    <Content Include="Template\fonts\less\spinning.less" />
+    <Content Include="Template\fonts\less\stacked.less" />
+    <Content Include="Template\fonts\less\variables.less" />
+    <Content Include="Template\fonts\scss\font-awesome.scss" />
+    <Content Include="Template\fonts\scss\_animated.scss" />
+    <Content Include="Template\fonts\scss\_bordered-pulled.scss" />
+    <Content Include="Template\fonts\scss\_core.scss" />
+    <Content Include="Template\fonts\scss\_fixed-width.scss" />
+    <Content Include="Template\fonts\scss\_icons.scss" />
+    <Content Include="Template\fonts\scss\_larger.scss" />
+    <Content Include="Template\fonts\scss\_list.scss" />
+    <Content Include="Template\fonts\scss\_mixins.scss" />
+    <Content Include="Template\fonts\scss\_path.scss" />
+    <Content Include="Template\fonts\scss\_rotated-flipped.scss" />
+    <Content Include="Template\fonts\scss\_spinning.scss" />
+    <Content Include="Template\fonts\scss\_stacked.scss" />
+    <Content Include="Template\fonts\scss\_variables.scss" />
+    <Content Include="Template\js\datatables\json\scroller-demo.json" />
+    <Content Include="Template\js\maps\us-unemployment.json" />
+    <Content Include="Views\Live\_liveChart.cshtml" />
+    <Content Include="Views\Live\_liveGrid.cshtml" />
+    <Content Include="Views\Station\Index.cshtml" />
+    <Content Include="Views\Station\Create.cshtml" />
+    <Content Include="Views\Station\Details.cshtml" />
+    <Content Include="Views\Station\Edit.cshtml" />
+    <Content Include="Views\Ldr\Create.cshtml" />
+    <Content Include="Views\Ldr\Details.cshtml" />
+    <Content Include="Views\Ldr\Edit.cshtml" />
+    <Content Include="Views\Ldr\Index.cshtml" />
+    <Content Include="Views\Ldr\_LdrList.cshtml" />
+    <Content Include="Views\Station\_StationList.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+    <Content Include="Views\Shared\_Styles.cshtml" />
+    <Content Include="Views\Shared\_ApproveModal.cshtml" />
+    <Content Include="Views\Motor\_MotorList.cshtml" />
+    <Content Include="Views\Motor\Create.cshtml" />
+    <Content Include="Views\Motor\Details.cshtml" />
+    <Content Include="Views\Motor\Edit.cshtml" />
+    <Content Include="Views\Motor\Index.cshtml" />
+    <Content Include="Views\Castle\_CastleList.cshtml" />
+    <Content Include="Views\Castle\Create.cshtml" />
+    <Content Include="Views\Castle\Details.cshtml" />
+    <Content Include="Views\Castle\Edit.cshtml" />
+    <Content Include="Views\Castle\Index.cshtml" />
+    <Content Include="Views\Throwing\_ThrowingList.cshtml" />
+    <Content Include="Views\Throwing\Create.cshtml" />
+    <Content Include="Views\Throwing\Details.cshtml" />
+    <Content Include="Views\Throwing\Edit.cshtml" />
+    <Content Include="Views\Throwing\Index.cshtml" />
+    <Content Include="Views\Target\_TargetList.cshtml" />
+    <Content Include="Views\Target\Create.cshtml" />
+    <Content Include="Views\Target\Details.cshtml" />
+    <Content Include="Views\Target\Edit.cshtml" />
+    <Content Include="Views\Target\Index.cshtml" />
+    <Content Include="Views\CastleLdrPoint\_CastleLdrPointList.cshtml" />
+    <Content Include="Views\CastleLdrPoint\Create.cshtml" />
+    <Content Include="Views\CastleLdrPoint\Details.cshtml" />
+    <Content Include="Views\CastleLdrPoint\Edit.cshtml" />
+    <Content Include="Views\CastleLdrPoint\Index.cshtml" />
+    <Content Include="Views\ThrowBall\_ThrowBallAltitudeList.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAltitudeCreate.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAltitudeDetails.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAltitudeEdit.cshtml" />
+    <Content Include="Views\ThrowBall\Index.cshtml" />
+    <Content Include="Views\ThrowBall\_ThrowBallAngleList.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAngleCreate.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAngleEdit.cshtml" />
+    <Content Include="Views\ThrowBall\ThrowBallAngleDetails.cshtml" />
+    <Content Include="Views\Player\_PlayerList.cshtml" />
+    <Content Include="Views\Player\Create.cshtml" />
+    <Content Include="Views\Player\Details.cshtml" />
+    <Content Include="Views\Player\Edit.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Training\_TrainingList.cshtml" />
+    <Content Include="Views\Training\Create.cshtml" />
+    <Content Include="Views\Training\Details.cshtml" />
+    <Content Include="Views\Training\Edit.cshtml" />
+    <Content Include="Views\Training\Index.cshtml" />
+    <Content Include="Views\PlayerTraining\_PlayerTrainingList.cshtml" />
+    <Content Include="Views\Account\LoginRegister.cshtml" />
+    <Content Include="Views\Live\_LiveChart2.cshtml" />
+    <Content Include="Views\PlayerTraining\Result.cshtml" />
+    <Content Include="Views\PlayerTraining\_SuccessPercentChart.cshtml" />
+    <Content Include="Views\PlayerTraining\_Chart2.cshtml" />
+    <Content Include="Views\PlayerTraining\_ResGrid.cshtml" />
+    <Content Include="Views\PlayerTraining\_Chart1.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Home\_Chart1.cshtml" />
+    <Content Include="Views\Home\_Chart2.cshtml" />
+    <Content Include="Views\CastleLdrPoint\FastCreate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FBM.Core.Resource\FBM.Core.Resource.csproj">
+      <Project>{23b4024c-a8da-4031-ac33-1d9a80f146df}</Project>
+      <Name>FBM.Core.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.API\FBM.Data.API.csproj">
+      <Project>{25C58372-5BEB-4521-8ABC-D26BF135827E}</Project>
+      <Name>FBM.Data.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.DTO\FBM.Data.DTO.csproj">
+      <Project>{7f4bc6ea-8a1e-4077-b896-18eb65cac595}</Project>
+      <Name>FBM.Data.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.Entity\FBM.Data.Entity.csproj">
+      <Project>{64b0f98a-6c57-4193-99d7-5231ef679d1f}</Project>
+      <Name>FBM.Data.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Data.Enum\FBM.Data.Enum.csproj">
+      <Project>{8eea579a-cf16-4f4e-8213-75fff5ec2ae6}</Project>
+      <Name>FBM.Data.Enum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>41474</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:41474/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:41474/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

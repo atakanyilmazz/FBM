@@ -1,0 +1,15 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.StationM;
+@model StationVm
+@{
+    ViewBag.Title = Resources.List;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("Create"))
+}
+@using (Html.FBMPanel(Resources.Station))
+{
+    @Html.Partial("_StationList", Model.List)
+}
+

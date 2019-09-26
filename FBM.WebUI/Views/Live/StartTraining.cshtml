@@ -1,0 +1,24 @@
+﻿@using FBM.WebUI.Models
+@model StartTrainingVM
+@{
+    ViewBag.Title = Resources.StartTraining;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Error != null)
+{
+    <h1>@ViewBag.Error</h1>
+}
+
+@using (Html.FBMPanel(Resources.ChooseTrainingAndPlayer))
+{
+    using (Html.BeginForm())
+    {
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.FBMDropDownListFor(x => x.PlayerId, Model.PlayerList)
+            @Html.FBMDropDownListFor(x => x.TrainingId, Model.TrainingList)
+            @Html.FBMSplit()
+            @Html.FBMSaveButton(text:Resources.Start)
+        }
+    }
+}

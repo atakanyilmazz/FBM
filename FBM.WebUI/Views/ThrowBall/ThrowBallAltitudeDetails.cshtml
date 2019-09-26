@@ -1,0 +1,53 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Throw.ThrowBallAltitude
+
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("ThrowBallAltitudeDelete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("ThrowBallAltitudeEdit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.ThrowBallAltitude))
+{
+    using (Html.FBMDl())
+    {
+        
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.AltitudeType)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.AltitudeType.Name)
+        }
+        @Html.FBMDisplayFor(x => x.Floor)
+        @Html.FBMDisplayFor(x => x.Motor1State)
+        @Html.FBMDisplayFor(x => x.Motor2State)
+    }
+}
+@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class: "active"))
+            {
+                @Html.FBMTab("throwing", Resources.Throwing)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "throwing"))
+            {
+                @Html.Partial("~/Views/Throwing/_ThrowingList.cshtml", Model.Throwing)
+            }
+        }
+    }
+}

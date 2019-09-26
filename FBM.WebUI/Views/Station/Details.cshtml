@@ -1,0 +1,59 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Station.Station
+
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("Edit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Station))
+{
+    using (Html.FBMDl())
+    {
+        @Html.FBMDisplayFor(x => x.Name)
+        @Html.FBMDisplayFor(x => x.Desctription)
+    }
+}
+@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class:"active"))
+            {
+                @Html.FBMTab("ldr", Resources.Ldr)
+            }
+            using (Html.FBMLi())
+            {
+                @Html.FBMTab("motor", Resources.Motor)
+            }
+            using (Html.FBMLi())
+            {
+                @Html.FBMTab("castle", Resources.Castle)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "ldr"))
+            {
+                @Html.Partial("~/Views/Ldr/_LdrList.cshtml", Model.Ldr)
+            }
+            using (Html.FBMDiv("tab-pane", "motor"))
+            {
+                @Html.Partial("~/Views/Motor/_MotorList.cshtml", Model.Motor)
+            }
+            using (Html.FBMDiv("tab-pane", "castle"))
+            {
+                @Html.Partial("~/Views/Castle/_CastleList.cshtml", Model.Castle)
+            }
+        }
+    }
+}

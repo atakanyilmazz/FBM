@@ -1,0 +1,29 @@
+﻿@using FBM.Core.Resource;
+@model FBM.Data.Entity.Throw.Throwing
+    ViewBag.Title = Resources.Update;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.ListButton(@Url.Action("Index"))
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+}
+@using (Html.FBMPanel(Resources.Throwing))
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.FBMDropDownListFor(x => x.MotorId, (IEnumerable<SelectListItem>)ViewBag.MotorList)
+            @Html.FBMDropDownListFor(x => x.ThrowBallAngleId, (IEnumerable<SelectListItem>)ViewBag.ThrowBallAngleList)
+            @Html.FBMDropDownListFor(x => x.ThrowBallAltitudeId, (IEnumerable<SelectListItem>)ViewBag.ThrowBallAltitudeList)
+            @Html.FBMSplit()
+            @Html.FBMSaveButton()
+        }
+    }
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

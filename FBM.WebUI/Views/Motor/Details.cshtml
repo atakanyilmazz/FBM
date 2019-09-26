@@ -1,0 +1,53 @@
+﻿@using FBM.Core.Resource
+@model FBM.Data.Entity.Station.Motor
+
+@{
+    ViewBag.Title = Resources.Card;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.DeleteButton(@Url.Action("Delete", new { id = Model.Id }))
+    @Html.EditButton(@Url.Action("Edit", new { id = Model.Id }))
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Motor))
+{
+    using (Html.FBMDl())
+    {
+        @Html.FBMDisplayFor(x => x.Name)
+        using (Html.FBMDt())
+        {
+            @Html.DisplayNameFor(x => x.Station)
+        }
+        using (Html.FBMDd())
+        {
+            @Html.DisplayFor(x => x.Station.Name)
+        }
+        @Html.FBMDisplayFor(x => x.StationNo)
+        @Html.FBMDisplayFor(x => x.Floor)
+        @Html.FBMDisplayFor(x => x.WallPosition)
+    }
+}
+@using (Html.FBMPanel(Resources.Connections, colaps: true, cloasble: true))
+{
+    using (Html.FBMDiv("col-xs-2"))
+    {
+        using (Html.FBMUl(@class: "nav nav-tabs tabs-left"))
+        {
+            using (Html.FBMLi(@class: "active"))
+            {
+                @Html.FBMTab("throwing", Resources.Throwing)
+            }
+        }
+    }
+    using (Html.FBMDiv("col-xs-10"))
+    {
+        using (Html.FBMDiv("tab-content"))
+        {
+            using (Html.FBMDiv("tab-pane active", "throwing"))
+            {
+                @Html.Partial("~/Views/Throwing/_ThrowingList.cshtml", Model.Throwing)
+            }
+        }
+    }
+}

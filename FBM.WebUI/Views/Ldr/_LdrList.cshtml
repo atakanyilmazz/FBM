@@ -1,0 +1,24 @@
+﻿@using FBM.Core.Resource;
+@using FBM.Data.Enum;
+@using GridMvc.Html
+@model IEnumerable<FBM.Data.Entity.Station.Ldr>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Station.Name).Titled(Resources.Station).Sortable(true);
+    c.Add(y => y.Axis).Titled(Resources.Axis);
+    c.Add(y => y.WallPosition).Titled(Resources.WallPosition);
+    c.Add(y => y.LdrUnitNo).Titled(Resources.LdrUnitNo).Sortable(true).Filterable(true);
+    c.Add(y => y.AxisOrder).Titled(Resources.AxisOrder).Sortable(true).Filterable(true);
+    c.Add(y => y.LaserCount).Titled(Resources.LaserCount).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Details", "Ldr", new { id = id }));
+    @Html.EditListItem(Url.Action("Edit", "Ldr", new { id = id}));
+    @Html.DeleteListItem(Url.Action("Delete", "Ldr", new { id = id}));
+    @Html.EndActionMenu()
+}

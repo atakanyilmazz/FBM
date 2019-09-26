@@ -1,0 +1,22 @@
+﻿@model FBM.Data.DTO.LiveTrainingDTO
+
+@{
+    ViewBag.Title = String.Format("{0} {1}",Model.PlayerName,Model.TrainingDate);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.FBMPanel(Resources.GoalStatus,@class:"col-md-4")) {
+    @Html.Partial("_SuccessPercentChart", Model)
+}
+@using (Html.FBMPanel("aa", @class: "col-md-4"))
+{
+    @Html.Partial("_Chart1", Model)
+}
+@using (Html.FBMPanel("aa", @class: "col-md-4"))
+{
+    @Html.Partial("_Chart2", Model)
+}
+@using (Html.FBMPanel("aa", @class: "col-md-12"))
+{
+    @Html.Partial("_ResGrid", Model)
+}

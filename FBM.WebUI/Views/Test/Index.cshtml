@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.FBMPanel("Motors", @class: "col-md-6 col-sm-12"))
+{
+    @Html.TextBox("stationNo",null, htmlAttributes: new { id= "stationNo" , placeholder="Station No", type = "number" })
+    <button id="mixOn">MixOn</button>
+    <button id="mixOff">MixOff</button>
+    <button id="release">Release</button>
+    <button id="getLdrCount">Ldr Count</button>
+    <span id="ldrCount"></span>
+    <button id="getDeviceCount">Device Count</button>
+    <span id="deviceCount"></span>
+}
+
+
+@section scripts{
+    <script>
+        $('#release').on('click', function () {
+            $.post("@Url.Action("ReleaseBall", "Test")", { val: $("#stationNo").val() }).done(function (data) {
+                if (data) {
+                    swal(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                        )
+                } else {
+                    swal(
+                        'Oops...',
+                        'Something went wrong!',
+                        'error'
+                        )
+                }
+            });
+        });
+        $('#mixOn').on('click', function () {
+            $.post("@Url.Action("mixOn","Test")", { val: $("#stationNo").val() }).done(function (data) {
+                if (data) {
+                    swal(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                        )
+                } else {
+                    swal(
+                        'Oops...',
+                        'Something went wrong!',
+                        'error'
+                        )
+                }
+            });
+        });
+        $('#mixOff').on('click', function () {
+            $.post("@Url.Action("MixOff", "Test")", { val: $("#stationNo").val() }).done(function (data) {
+                if (data) {
+                    swal(
+                        'Good job!',
+                        'You clicked the button!',
+                        'success'
+                        )
+                } else {
+                    swal(
+                        'Oops...',
+                        'Something went wrong!',
+                        'error'
+                        )
+                }
+            });
+        });
+        $('#getLdrCount').on('click', function () {
+            debugger;
+            $.post("@Url.Action("GetLdrCount", "Test")", {}).done(function (data) {
+                $("#ldrCount").text(data);
+            });
+        });
+        $('#getDeviceCount').on('click', function () {
+            debugger;
+            $.post("@Url.Action("GetDeviceCount", "Test")", {}).done(function (data) {
+                $("#deviceCount").text(data);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@using FBM.Data.DTO
+@model LiveTrainingDTO
+
+@Html.Grid(Model.TrainLog.OrderByDescending(x => x.OrderNo)).Columns(c =>
+{
+    c.Add(p => p.isSuccess).Titled(Resources.isSuccess).Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuIsSuccess(x.isSuccess).ToHtmlString());
+    c.Add(y => y.Speed).Titled(Resources.Speed);
+    c.Add(y => y.Time).Titled(Resources.Time);
+    c.Add(y => y.SpeedScore).Titled(Resources.SpeedScore);
+    c.Add(y => y.TimeScore).Titled(Resources.TimeScore);
+}).WithPaging(10).Selectable(false).SetLanguage("tr")
+
+
+@helper RowMenuIsSuccess(bool isSuccess)
+{
+if (isSuccess)
+{
+        @Resources.Success
+}
+else
+{
+        @Resources.GoalUnSuccess
+}
+}

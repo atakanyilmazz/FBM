@@ -1,0 +1,221 @@
+﻿@using FBM.WebUI.Properties
+@using FBM.WebUI.Helper
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - @Resources.ClubName</title>
+        @Html.Partial("_Styles")
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
+    <script src="~/Template/js/jquery.min.js"></script>
+    <script src="~/Template/js/nprogress.js"></script>
+    <script src="~/Template/js/echart/echarts-all.js"></script>
+    <script src="~/Template/js/echart/green.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
+
+</head>
+<body class="nav-md">
+    @using (Html.FBMDiv(@class: "container body"))
+    {
+        using (Html.FBMDiv(@class: "main_container"))
+        {
+            using (Html.FBMDiv(@class: "col-md-3 left_col"))
+            {
+                using (Html.FBMDiv(@class: "left_col scroll-view"))
+                {
+                    using (Html.FBMDiv(@class: "navbar nav_title", style: "border: 0;"))
+                    {
+                        @Html.FBMALink(Url.Action("Index", "Home"), "<span>" + Resources.FBM + "</span>", hasIcon: true, icon: "fa fa-futbol-o", @class: "site_title")
+                    }
+                    @Html.FBMClearFix()
+                    using (Html.FBMDiv(@class: "main_menu_side hidden-print main_menu", id: "sidebar-menu"))
+                    {
+                        using (Html.FBMDiv(@class: "menu_section"))
+                        {
+                            using (Html.FBMUl(@class: "nav side-menu"))
+                            {
+                                @Html.FBMNavLiBtn(Url.Action("Index", "Home"), Resources.Home, hasIcon: true, icon: "fa fa-home")
+                                @Html.FBMNavLiBtn(Url.Action("StartTraining", "Live"), Resources.StartTraining, hasIcon: true, icon: "fa fa-cogs")
+                                @Html.FBMNavLiBtn(Url.Action("Index", "Live", new { id = "__id__" }), Resources.WatchTraining + " <span class='label label-success pull-right'>" + Resources.Live + "</span>", hasIcon: true, icon: "fa fa-futbol-o", liClass: "liveLi")
+                                using (Html.FBMLi())
+                                {
+                                    @Html.FBMALink("", Resources.DataManage + " <span class='fa fa-chevron-down'></span>", hasIcon: true, icon: "fa fa-database")
+                                    using (Html.FBMUl(@class: "nav child_menu", style: "display: none"))
+                                    {
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Station"), Resources.Station)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Ldr"), Resources.Ldr)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Motor"), Resources.Motor)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Castle"), Resources.Castle)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Throwing"), Resources.Throwing)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Target"), Resources.Target)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "CastleLdrPoint"), Resources.CastleLdrPoint)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "ThrowBall"), Resources.ThrowBall)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Player"), Resources.Player)
+                                        @Html.FBMNavLiBtn(Url.Action("Index", "Training"), Resources.Training)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="right_col" role="main">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                    <div class="title_right">
+                        <div class="col-md-8 col-sm-8 col-xs-12 form-group pull-right top_search alignright">
+                            @RenderSection("actionLinks", required: false)
+                        </div>
+                    </div>
+                </div>
+                @Html.FBMClearFix()
+                @if (TempData[Message.MESSAGE_NAME] != null)
+                {
+
+                    foreach (var msg in (List<Message>)TempData[Message.MESSAGE_NAME])
+                    {
+                        string cls = "";
+
+                        if (msg.Type == MessageType.Success)
+                        {
+                            cls = "alert-success";
+                        }
+                        else if (msg.Type == MessageType.Danger)
+                        {
+                            cls = "alert-danger";
+                        }
+                        else if (msg.Type == MessageType.Warning)
+                        {
+                            cls = "alert-warning";
+                        }
+
+                        <div class="col-lg-12">
+                            <div id="PageAlertBox" class="alert @cls" @(msg.Duration.HasValue ? "data-duration=" + msg.Duration : "")>
+                                @if (msg.Closeable)
+                            {
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                }
+                                @Html.Raw(msg.Text)
+                                @if (!ViewData.ModelState.IsValid)
+                            {
+                                    @Html.ValidationSummary()
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                @RenderBody()
+                @Html.FBMClearFix()
+            </div>
+        }
+    }
+    @Html.Partial("_approvemodal")
+    @Html.Partial("_scripts")
+    <script src="http://@(Settings.Default.ApiAdress)/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="http://@(Settings.Default.ApiAdress)/signalr/hubs"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        var isLiveAlertHubInitialized = true;
+        $(function () {
+            if ($("#PageAlertBox").length > 0) {
+                debugger;
+                var duration = $("#PageAlertBox").attr("data-duration");
+
+                if (duration != null && duration != undefined) {
+
+                    duration = duration * 1000;
+
+                    $("#PageAlertBox").fadeTo(duration, 500).slideUp(500, function () {
+                        $("#PageAlertBox").alert('close');
+                    });
+
+                }
+            }
+
+            $.get("@Url.Action("GetLiveDataJson","Live")", function (data) {
+                if (data.isLive == false) {
+                    $('.liveLi').addClass('hidden');
+                } else {
+                    $('.liveLi').removeClass('hidden');
+                    $('.liveLi').children('a').attr("href", "@Url.Action("Index", "Live", new { id = "__id__" })");
+                    $('.liveLi').children('a').attr("href", $('.liveLi').children('a').attr("href").replace('__id__', data.Id));
+                }
+            });
+            //LiveAlertHub();
+            TodoFunc();
+        });
+
+        function LiveAlertHub() {
+            if (isLiveAlertHubInitialized)
+                return;
+            try {
+                $.connection.hub.url = 'http://@(Settings.Default.ApiAdress)/signalr';
+                var clientHub = $.connection.liveTrainingHub;
+
+                $.connection.hub.start().done(function () {
+                    clientHub.server.initialize();
+                    isLiveAlertHubInitialized = true;
+                });
+                clientHub.client.broadcastMessage = function (message) {
+                    if (message === "HasChange")
+                        TodoFunc();
+                };
+            } catch (err) {
+                isLiveAlertHubInitialized = false;
+            }
+        };
+        var getOneTime = true;
+        function TodoFunc() {
+            $.get("@Url.Action("GetLiveDataJson","Live")", function (data) {
+                if (data.isLive == true) {
+                    if (data.Val == 0) {
+                        if (data.isNew == true) {
+                            $('.liveLi').removeClass('hidden');
+                            if (getOneTime == true) {
+                                getOneTime = false;
+                                var url = '@Url.Action("index", "Live", new { id = "__id__" })';
+                                url = url.replace('__id__', data.Id);
+                                if (window.location.pathname.toLowerCase() != url.toLowerCase()) {
+                                swal({
+                                    title: '@Resources.NewTrainingStarting',
+                                    html: $('<div>')
+                                      .text('@Resources.WatchToo'),
+                                    animation: false,
+                                    customClass: 'animated tada',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: '@Resources.Watch',
+                                    cancelButtonText: '@Resources.NotNow'
+                                }).then(function () {
+                                        window.location.href = url;
+                                });
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    $('.liveLi').addClass('hidden');
+                }
+            });
+            if (!isLiveAlertHubInitialized)
+                LiveAlertHub();
+        };
+        NProgress.done();
+    </script>
+</body>
+</html>

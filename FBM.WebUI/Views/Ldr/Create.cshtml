@@ -1,0 +1,33 @@
+﻿@using FBM.Core.Resource;
+@model FBM.Data.Entity.Station.Ldr
+
+@{
+    ViewBag.Title = Resources.New;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section actionLinks{
+    @Html.ListButton(@Url.Action("Index"))
+}
+@using (Html.FBMPanel(Resources.Ldr))
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        using (Html.FBMDiv("form-horizontal"))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.FBMDropDownListFor(model => model.StationId, (IEnumerable<SelectListItem>)ViewBag.StationList)
+            @Html.FBMEnumDropDownListFor(model => model.Axis)
+            @Html.FBMEnumDropDownListFor(model => model.WallPosition)
+            @Html.FBMEditorFor(model => model.LdrUnitNo)
+            @Html.FBMEditorFor(model => model.AxisOrder)
+            @Html.FBMEditorFor(model => model.LaserCount)
+            @Html.FBMSplit()
+            @Html.FBMSaveButton()
+        }
+    }
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

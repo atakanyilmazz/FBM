@@ -1,0 +1,22 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Train.Training>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Name).Titled(Resources.Name).Sortable(true).Filterable(true);
+    c.Add(y => y.Desctription).Titled(Resources.Desctription).Sortable(true).Filterable(true);
+    c.Add(y => y.ThrowWaitingTime).Titled(Resources.ThrowWaitingTime).Sortable(true).Filterable(true);
+    c.Add(y => y.ThrowTimeOut).Titled(Resources.ThrowTimeOut).Sortable(true).Filterable(true);
+    c.Add(y => y.TimeScoreFactor).Titled(Resources.TimeScoreFactor).Sortable(true).Filterable(true);
+    c.Add(y => y.SpeedScoreFactor).Titled(Resources.SpeedScoreFactor).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Details", "Training", new { id = id }));
+    @Html.EditListItem(Url.Action("Edit", "Training", new { id = id }));
+    @Html.DeleteListItem(Url.Action("Delete", "Training", new { id = id }));
+    @Html.EndActionMenu()
+}

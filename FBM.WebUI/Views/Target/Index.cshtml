@@ -1,0 +1,15 @@
+﻿@using FBM.Core.Resource;
+@using FBM.WebUI.Models.TargetM;
+@model TargetVM
+@{
+    ViewBag.Title = Resources.List;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section actionLinks{
+    @Html.AddNewButton(Url.Action("Create"),buttonPosition:Position.Right)
+}
+@using (Html.FBMPanel(Resources.Target))
+{
+    @Html.Partial("_TargetList", Model.List)
+}
+

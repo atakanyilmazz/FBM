@@ -1,0 +1,20 @@
+﻿@using FBM.Core.Resource;
+@model IEnumerable<FBM.Data.Entity.Station.Motor>
+
+@Html.Grid(Model).Columns(c =>
+{
+    c.Add(p => p.Id).Titled("").Encoded(false).Sanitized(false).RenderValueAs(x => RowMenuContact(x.Id).ToHtmlString());
+    c.Add(y => y.Station).Titled(Resources.Station).Sortable(true).Filterable(true);
+    c.Add(y => y.StationNo).Titled(Resources.StationNo).Sortable(true).Filterable(true);
+    c.Add(y => y.Floor).Titled(Resources.Floor).Sortable(true).Filterable(true);
+    c.Add(y => y.WallPosition).Titled(Resources.WallPosition).Sortable(true).Filterable(true);
+}).WithPaging(20).Selectable(false).SetLanguage("tr")
+
+@helper RowMenuContact(Guid id)
+{
+    @Html.BeginActionMenu()
+    @Html.CardListItem(Url.Action("Details", "Motor", new { id = id }));
+    @Html.EditListItem(Url.Action("Edit", "Motor", new { id = id }));
+    @Html.DeleteListItem(Url.Action("Delete", "Motor", new { id = id }));
+    @Html.EndActionMenu()
+}

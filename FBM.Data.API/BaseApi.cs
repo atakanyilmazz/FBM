@@ -27,7 +27,7 @@ namespace FBM.Data.API
             _route = route;
             if (client.BaseAddress == null)
             {
-                client.BaseAddress = new Uri("http://192.168.1.107:88/");
+                client.BaseAddress = new Uri("http://192.168.1.200:88/");
             }
             try
             {
@@ -37,7 +37,7 @@ namespace FBM.Data.API
             catch (Exception)
             {
                 client = new HttpClient();
-                client.BaseAddress = new Uri("http://192.168.1.107:88/");
+                client.BaseAddress = new Uri("http://192.168.1.200:88/");
             }
         }
         public  List<T> Get()

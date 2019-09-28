@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Station\DeviceInfo.cs" />
     <Compile Include="LiveTraining.cs" />
     <Compile Include="NamedEntity.cs" />
     <Compile Include="Players\Player.cs" />

@@ -1,27 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FF9206B-5A92-4902-B7CE-7B7C73307D45}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FBM.Data.Mapping</RootNamespace>
-    <AssemblyName>FBM.Data.Mapping</AssemblyName>
+    <ProjectGuid>{B1E2E0A7-A88D-45C4-A955-0C3BC8C09543}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FBMConsoleCGI</RootNamespace>
+    <AssemblyName>CGITest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\inetpub\wwwAPI\CGI\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,16 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,32 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntityMap.cs" />
-    <Compile Include="Station\DeviceInfoMap.cs" />
-    <Compile Include="LiveTrainingMap.cs" />
-    <Compile Include="NamedEntityMap.cs" />
-    <Compile Include="Players\PlayerMap.cs" />
-    <Compile Include="Players\PlayerTrainingMap.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Station\CastleLdrPointMap.cs" />
-    <Compile Include="Station\CastleMap.cs" />
-    <Compile Include="Station\LdrMap.cs" />
-    <Compile Include="Station\MotorMap.cs" />
-    <Compile Include="Station\StationMap.cs" />
-    <Compile Include="Throw\AltitudeTypeMap.cs" />
-    <Compile Include="Throw\AngleTypeMap.cs" />
-    <Compile Include="Throw\ThrowBallAltitudeMap.cs" />
-    <Compile Include="Throw\ThrowBallAngleMap.cs" />
-    <Compile Include="Throw\ThrowingMap.cs" />
-    <Compile Include="Train\TargetMap.cs" />
-    <Compile Include="Train\TrainingMap.cs" />
-    <Compile Include="Train\TrainLogMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FBM.Data.DTO\FBM.Data.DTO.csproj">
+      <Project>{7f4bc6ea-8a1e-4077-b896-18eb65cac595}</Project>
+      <Name>FBM.Data.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FBM.Data.Entity\FBM.Data.Entity.csproj">
       <Project>{64b0f98a-6c57-4193-99d7-5231ef679d1f}</Project>
       <Name>FBM.Data.Entity</Name>
@@ -83,13 +66,22 @@
       <Project>{8eea579a-cf16-4f4e-8213-75fff5ec2ae6}</Project>
       <Name>FBM.Data.Enum</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FBM.Data\FBM.Data.csproj">
+      <Project>{def65fd9-80f4-41fe-bb98-a5dbdbf4d511}</Project>
+      <Name>FBM.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Enum\FBM.Dll.Enum.csproj">
+      <Project>{1a0b78ce-27b4-4240-b3c5-f6882b3c4396}</Project>
+      <Name>FBM.Dll.Enum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Service\FBM.Dll.Service.csproj">
+      <Project>{ee97f341-d536-403f-aa10-7b727ad62069}</Project>
+      <Name>FBM.Dll.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FBM.Dll.Struct\FBM.Dll.Struct.csproj">
+      <Project>{9796bbee-37d7-443d-8d71-e352843a5cd3}</Project>
+      <Name>FBM.Dll.Struct</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

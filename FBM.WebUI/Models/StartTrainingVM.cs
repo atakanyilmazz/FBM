@@ -1,5 +1,6 @@
 ﻿using FBM.Core.Resource;
 using FBM.Data.Entity.Players;
+using FBM.Data.Entity.Station;
 using FBM.Data.Entity.Train;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace FBM.WebUI.Models
         public Guid TrainingId { get; set; }
         public List<SelectListItem> PlayerList { get; set; }
         public List<SelectListItem> TrainingList { get; set; }
+        public DeviceInfo DeviceInfo { get; set; }
     }
 }

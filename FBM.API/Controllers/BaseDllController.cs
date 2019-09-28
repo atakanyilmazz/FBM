@@ -1,6 +1,7 @@
 ﻿using FBM.Dll.Enum;
 using FBM.Dll.Service;
 using FBM.Dll.Struct;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Web.Http;
 namespace FBM.API.Controllers
 {
@@ -17,56 +20,48 @@ namespace FBM.API.Controllers
         DllFunctions _func = new DllFunctions();
         [HttpGet, HttpPost]
         public int LdrCount()
-        {
-            string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
-            string args = "96";
-            ProcessStartInfo p = new ProcessStartInfo(path, args);
-            p.CreateNoWindow = true;
-            p.UseShellExecute = false;
-            p.RedirectStandardOutput = true;
-            p.RedirectStandardError = true;
-            var process = Process.Start(p);
-            var output = new List<string>();
-
-            while (process.StandardOutput.Peek() > -1)
-            {
-                output.Add(process.StandardOutput.ReadLine());
-            }
-
-            while (process.StandardError.Peek() > -1)
-            {
-                output.Add(process.StandardError.ReadLine());
-            }
-            process.WaitForExit();
+        {//96
             int res = 0;
-            int.TryParse(output[0], out res);
+            
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("http://192.168.1.200:88/");
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //var content = new StringContent(JsonConvert.SerializeObject(96), Encoding.UTF8, "application/json");
+            //HttpResponseMessage resp = client.PostAsync($"CGI/CGITest.exe", content).Result;
+            //resp.EnsureSuccessStatusCode();
+            //var str = resp.Content.ReadAsStringAsync().Result;
+
+
+            //res = Convert.ToInt32(str);
+
             return res;
         }
+
         [HttpGet, HttpPost]
         public int DeviceCount()
         {
-            string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
-            string args = "97"; //hex karşılıgı
-            ProcessStartInfo p = new ProcessStartInfo(path, args);
-            p.CreateNoWindow = true;
-            p.UseShellExecute = false;
-            p.RedirectStandardOutput = true;
-            p.RedirectStandardError = true;
-            var process = Process.Start(p);
-            var output = new List<string>();
+            //string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
+            //string args = "97"; //hex karşılıgı
+            //ProcessStartInfo p = new ProcessStartInfo(path, args);
+            //p.CreateNoWindow = true;
+            //p.UseShellExecute = false;
+            //p.RedirectStandardOutput = true;
+            //p.RedirectStandardError = true;
+            //var process = Process.Start(p);
+            //var output = new List<string>();
 
-            while (process.StandardOutput.Peek() > -1)
-            {
-                output.Add(process.StandardOutput.ReadLine());
-            }
+            //while (process.StandardOutput.Peek() > -1)
+            //{
+            //    output.Add(process.StandardOutput.ReadLine());
+            //}
 
-            while (process.StandardError.Peek() > -1)
-            {
-                output.Add(process.StandardError.ReadLine());
-            }
-            process.WaitForExit();
+            //while (process.StandardError.Peek() > -1)
+            //{
+            //    output.Add(process.StandardError.ReadLine());
+            //}
+            //process.WaitForExit();
             int res = 0;
-            int.TryParse(output[0], out res);
+            //int.TryParse(output[0], out res);
             return res;
         }
         [HttpGet, HttpPost]
@@ -244,13 +239,21 @@ namespace FBM.API.Controllers
             if (pname.Length == 0)
             {
                 string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
-                //string args = "0 " + id.ToString();
-                string args = id.ToString();
-                ProcessStartInfo p = new ProcessStartInfo(path, args);
+                string args = "0 " + id.ToString();
+                //string args = id.ToString();
+                ProcessStartInfo p = new ProcessStartInfo(path,args);
                 Process process = Process.Start(p);
                 return true;
             }
             return false;
+        }
+        public void DeviceInfo()
+        {
+            string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
+            string args = "107";
+            ProcessStartInfo p = new ProcessStartInfo(path, args);
+            
+            var process = Process.Start(p);
         }
     }
 }

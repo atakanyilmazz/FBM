@@ -80,5 +80,9 @@ namespace FBM.Data.API
         {
             return new DllApi();
         }
+        public static DeviceInfoApi DeviceInfoService()
+        {
+            return new DeviceInfoApi();
+        }
     }
 }

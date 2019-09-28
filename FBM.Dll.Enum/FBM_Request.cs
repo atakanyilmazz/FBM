@@ -19,6 +19,7 @@ namespace FBM.Dll.Enum
         REQUEST_GET_FLAGS = 0x68,               //parameters in:none / out: byte[Station Count]
         REQUEST_LAMP = 0x69,                    //parameters in: byte count, count times (byte lamp_no, LampColor colour_no, byte value) / out: none
         REQUEST_LAMPS_OFF = 0x6A,                //parameters in: none / out: none
+        REQUEST_Device_Info = 0x6B,                //parameters in: none / out: none
         REQUEST_START_TRAINING = 0,
     }
 }

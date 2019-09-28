@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountApi.cs" />
+    <Compile Include="DeviceInfoApi.cs" />
     <Compile Include="DllApi.cs" />
     <Compile Include="LiveTrainingApi.cs" />
     <Compile Include="ClientServiceProxy.cs" />

@@ -28,6 +28,9 @@ namespace FBM.Data.API
             if (client.BaseAddress == null)
             {
                 client.BaseAddress = new Uri("http://192.168.1.200:88/");
+                #if DEBUG
+                client.BaseAddress = new Uri("http://localhost:14444/");
+                #endif
             }
             try
             {
@@ -38,9 +41,12 @@ namespace FBM.Data.API
             {
                 client = new HttpClient();
                 client.BaseAddress = new Uri("http://192.168.1.200:88/");
+#if DEBUG
+                client.BaseAddress = new Uri("http://localhost:14444/");
+#endif
             }
         }
-        public  List<T> Get()
+        public List<T> Get()
         {
             HttpResponseMessage resp = client.GetAsync($"api/{Route}/Get").Result;
             resp.EnsureSuccessStatusCode();

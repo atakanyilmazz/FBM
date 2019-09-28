@@ -522,4 +522,13 @@
   <data name="Data13" xml:space="preserve">
     <value>Veri 13</value>
   </data>
+  <data name="DeviceCount" xml:space="preserve">
+    <value>İstasyon Adeti</value>
+  </data>
+  <data name="LdrCount" xml:space="preserve">
+    <value>Ldr Adeti</value>
+  </data>
+  <data name="DeviceInfo" xml:space="preserve">
+    <value>İstasyon Bilgisi</value>
+  </data>
 </root>

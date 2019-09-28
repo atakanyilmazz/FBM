@@ -90,6 +90,10 @@
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="DbmDbContext.cs" />
     <Compile Include="IBaseRep.cs" />
+    <Compile Include="Migrations\201909282135059_Device Info.cs" />
+    <Compile Include="Migrations\201909282135059_Device Info.Designer.cs">
+      <DependentUpon>201909282135059_Device Info.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ObjectQueryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +126,11 @@
       <Project>{5FF9206B-5A92-4902-B7CE-7B7C73307D45}</Project>
       <Name>FBM.Data.Mapping</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909282135059_Device Info.resx">
+      <DependentUpon>201909282135059_Device Info.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

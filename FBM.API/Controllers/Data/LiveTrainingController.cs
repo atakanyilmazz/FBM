@@ -51,10 +51,10 @@ namespace FBM.API.Controllers
             dto.Chart2List = chart2;
 
             int[] chart3 = new int[4];
-            chart3[0] = temp.Where(x => x.isSuccess == true && x.Target.Castle.CastleFloor==Data.Enum.Floor.Top).Count();//Üst Başarılı
-            chart3[1] = temp.Where(x => x.isSuccess == false && x.Target.Castle.CastleFloor == Data.Enum.Floor.Top).Count();//üst başarısız
-            chart3[2] = temp.Where(x => x.isSuccess == true && x.Target.Castle.CastleFloor == Data.Enum.Floor.Bottom).Count();//alt Başarılı
-            chart3[3] = temp.Where(x => x.isSuccess == false && x.Target.Castle.CastleFloor == Data.Enum.Floor.Bottom).Count();//alt Başarısız
+            chart3[0] = temp.Where(x => x.isSuccess == true && x.Target.Castle.CastleFloor== FBM.Data.Enum.Floor.Top).Count();//Üst Başarılı
+            chart3[1] = temp.Where(x => x.isSuccess == false && x.Target.Castle.CastleFloor == FBM.Data.Enum.Floor.Top).Count();//üst başarısız
+            chart3[2] = temp.Where(x => x.isSuccess == true && x.Target.Castle.CastleFloor == FBM.Data.Enum.Floor.Bottom).Count();//alt Başarılı
+            chart3[3] = temp.Where(x => x.isSuccess == false && x.Target.Castle.CastleFloor == FBM.Data.Enum.Floor.Bottom).Count();//alt Başarısız
             dto.Chart3List = chart3;
             List<Target> targetList = await base.Context.Target.Where(x => x.TrainingId == pt.TrainingId).ToListAsync();
             dto.TotalBallCount = Convert.ToInt32(targetList.Sum(x=>x.ThrowingCount));

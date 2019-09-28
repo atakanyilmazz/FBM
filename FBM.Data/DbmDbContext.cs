@@ -21,9 +21,9 @@ namespace FBM.Data
 {
     public class DbmDbContext : IdentityDbContext<User>
     {
-        public DbmDbContext():base("DbmDbContext",throwIfV1Schema: false)
+        public DbmDbContext() : base("DbmDbContext", throwIfV1Schema: false)
         {
-            
+
         }
         public IDbSet<Entity.Station.Station> Station { get; set; }
         public IDbSet<Castle> Castle { get; set; }
@@ -41,6 +41,7 @@ namespace FBM.Data
         public IDbSet<PlayerTraining> PlayerTraining { get; set; }
         public IDbSet<TrainLog> TrainLog { get; set; }
         public IDbSet<LiveTraining> LiveTraining { get; set; }
+        public IDbSet<DeviceInfo> DeviceInfo { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new StationMap());
@@ -59,6 +60,7 @@ namespace FBM.Data
             modelBuilder.Configurations.Add(new PlayerTrainingMap());
             modelBuilder.Configurations.Add(new TrainLogMap());
             modelBuilder.Configurations.Add(new LiveTrainingMap());
+            modelBuilder.Configurations.Add(new DeviceInfoMap());
             base.OnModelCreating(modelBuilder);
         }
         public static DbmDbContext Create()

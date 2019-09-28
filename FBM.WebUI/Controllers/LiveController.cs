@@ -11,6 +11,7 @@ using System.Runtime.Caching;
 using FBM.Data.Entity.Train;
 using FBM.Data.DTO;
 using FBM.Core.Resource;
+using FBM.Data.Entity.Station;
 
 namespace FBM.WebUI.Controllers
 {
@@ -65,6 +66,7 @@ namespace FBM.WebUI.Controllers
                 Text = x.Name,
                 Value = x.Id.ToString()
             }).ToList();
+            vm.DeviceInfo = ClientServiceProxy.DeviceInfoService().Get()[0];
             return vm;
         }
 

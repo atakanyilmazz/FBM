@@ -19,7 +19,7 @@ namespace FBM.Core.Resource {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -520,6 +520,24 @@ namespace FBM.Core.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to İstasyon Adeti.
+        /// </summary>
+        public static string DeviceCount {
+            get {
+                return ResourceManager.GetString("DeviceCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İstasyon Bilgisi.
+        /// </summary>
+        public static string DeviceInfo {
+            get {
+                return ResourceManager.GetString("DeviceInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to İndirme Linki.
         /// </summary>
         public static string DownloadLink {
@@ -714,6 +732,15 @@ namespace FBM.Core.Resource {
         public static string Ldr {
             get {
                 return ResourceManager.GetString("Ldr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ldr Adeti.
+        /// </summary>
+        public static string LdrCount {
+            get {
+                return ResourceManager.GetString("LdrCount", resourceCulture);
             }
         }
         

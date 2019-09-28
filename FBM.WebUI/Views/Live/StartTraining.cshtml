@@ -8,9 +8,17 @@
 {
     <h1>@ViewBag.Error</h1>
 }
-
+@using (Html.FBMPanel(Resources.DeviceInfo))
+{
+    using (Html.FBMDl())
+    {
+        @Html.FBMDisplayFor(model => model.DeviceInfo.LdrCount)
+        @Html.FBMDisplayFor(model => model.DeviceInfo.DeviceCount)
+    }
+}
 @using (Html.FBMPanel(Resources.ChooseTrainingAndPlayer))
 {
+
     using (Html.BeginForm())
     {
         using (Html.FBMDiv("form-horizontal"))
@@ -18,7 +26,7 @@
             @Html.FBMDropDownListFor(x => x.PlayerId, Model.PlayerList)
             @Html.FBMDropDownListFor(x => x.TrainingId, Model.TrainingList)
             @Html.FBMSplit()
-            @Html.FBMSaveButton(text:Resources.Start)
+            @Html.FBMSaveButton(text: Resources.Start)
         }
     }
 }

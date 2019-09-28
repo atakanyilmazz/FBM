@@ -20,5 +20,6 @@ namespace FBM.Data.Entity.Station
         public ICollection<Castle> Castle { get; set; }
         public ICollection<Motor> Motor { get; set; }
         public ICollection<Ldr> Ldr { get; set; }
-}
+        public ICollection<DeviceInfo> DeviceInfo { get; set; }
+    }
 }

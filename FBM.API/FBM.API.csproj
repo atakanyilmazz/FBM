@@ -37,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -236,6 +237,7 @@
     <Compile Include="Controllers\Data\BallPassController.cs" />
     <Compile Include="Controllers\Data\BaseController.cs" />
     <Compile Include="Controllers\Data\AngleTypeController.cs" />
+    <Compile Include="Controllers\Data\DeviceInfoController.cs" />
     <Compile Include="Controllers\Data\ThrowBallAltitudeController.cs" />
     <Compile Include="Controllers\Data\ThrowBallAngleController.cs" />
     <Compile Include="Controllers\Data\ThrowingController.cs" />

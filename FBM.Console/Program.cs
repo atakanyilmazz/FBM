@@ -41,19 +41,24 @@ namespace FBM.Console
             SetConsoleCtrlHandler(_handler);
             if (args.Count() == 0)
             {
-                args = new string[1];
-                args[0] = "2a569f44-edf5-e711-80ce-005056b9d9cf";
+                args = new string[2];
+                args[0] = "0";
+                args[1] = "2a569f44-edf5-e711-80ce-005056b9d9cf";
             }
-            //FBM_Request request = (FBM_Request)Enum.Parse(typeof(FBM_Request), args[0]);
-            FBM_Request request = FBM_Request.REQUEST_START_TRAINING;
+            FBM_Request request = (FBM_Request)Enum.Parse(typeof(FBM_Request), args[0].Split(' ')[0]);
+            //FBM_Request request = FBM_Request.REQUEST_START_TRAINING;
             switch (request)
             {
                 case FBM_Request.REQUEST_START_TRAINING:
                     Guid playerTrainingId;
-                    if (Guid.TryParse(args[0], out playerTrainingId))
+                    if (Guid.TryParse(args[1], out playerTrainingId))
                     {
                         StartTraining(playerTrainingId);
                     }
+                    break;
+                case FBM_Request.REQUEST_Device_Info:
+                    ConnectDevice();
+                    UploadDeviceInfo();
                     break;
                 case FBM_Request.REQUEST_MIX_ON:
                     ConnectDevice();
@@ -99,6 +104,27 @@ namespace FBM.Console
                     break;
             }
         }
+
+        private static void UploadDeviceInfo()
+        {
+            System.Console.WriteLine("Device Info Siliniyor.");
+            List<DeviceInfo> dı = db.DeviceInfo.ToList();
+            System.Console.WriteLine($"Bulunan Veri adet {dı.Count}");
+            foreach (var item in dı)
+            {
+                System.Console.WriteLine($"nesne {item.Id} silindi");
+                db.Entry(item).State = EntityState.Deleted;
+            }
+            DeviceInfo ndı = new DeviceInfo();
+            ndı.Id = new Guid();
+            ndı.LdrCount = _func.GetStationDevicesCount();
+            ndı.DeviceCount = _func.GetStationDevicesCount();
+
+            db.Entry(ndı).State = EntityState.Added;
+            db.SaveChanges();
+            System.Console.WriteLine("Veri Eklendi Ldr = " + ndı.LdrCount + " Device = " + ndı.DeviceCount);
+        }
+
         private static void StartTraining(Guid PlayerTrainingId)
         {
             System.Console.WriteLine("Program Başlatılıyor");
@@ -167,7 +193,7 @@ namespace FBM.Console
             System.Console.WriteLine("\n");
             bool isFirst = true;
             DateTime thrownTime = default(DateTime);
-            
+
             for (int i = 0; i < targetList.Count; i++)
             {
                 Target target = targetList[i];
@@ -180,7 +206,7 @@ namespace FBM.Console
                     System.Console.WriteLine("Motorlara Hız Verildi");
                     System.Console.WriteLine("\n");
                 }
-                
+
                 while (!CheckMotor(target.Throwing))
                 {
                     SetMotor(target.Throwing);
@@ -426,8 +452,8 @@ namespace FBM.Console
         {
 
 
-            BlinkColor(Color.Red,3,0.2);
-            BlinkColor(Color.Yellow,3,0.2);
+            BlinkColor(Color.Red, 3, 0.2);
+            BlinkColor(Color.Yellow, 3, 0.2);
             BlinkColor(Color.Green, 3, 0.2);
 
 
@@ -459,7 +485,7 @@ namespace FBM.Console
 
         }
 
-        private static void BlinkColor(Color c,double s,double s2)
+        private static void BlinkColor(Color c, double s, double s2)
         {
             int sayac = 0;
             double saniye = s;
@@ -474,13 +500,13 @@ namespace FBM.Console
                     list.Add(dto);
                 }
                 _func.LampsOn(list);
-                sayac += Convert.ToInt32(255/(s/s2));
+                sayac += Convert.ToInt32(255 / (s / s2));
                 if (sayac > 255)
                 {
                     sayac = 255;
                 }
                 saniye -= s2;
-                Thread.Sleep(Convert.ToInt32(s2*1000));
+                Thread.Sleep(Convert.ToInt32(s2 * 1000));
             }
             _func.LampsOff();
         }
@@ -501,7 +527,7 @@ namespace FBM.Console
                 Thread.Sleep(200);
                 _func.LampsOff();
             }
-            
+
             List<byte> values = new List<byte> { 0, 6, 0, 0, 0 };
             _func.SetMotor(values);
             values = new List<byte> { 1, 6, 0, 0, 0 };
@@ -527,7 +553,7 @@ namespace FBM.Console
             _func.MixOff(6);
             _func.MixOff(7);
             Task.Delay(10000);
-            
+
         }
         private static Task<bool> ThrowBall(Target target)
         {
@@ -604,7 +630,7 @@ namespace FBM.Console
         private async static void BeSureHasBalls(Target target)
         {
             int sayac = 10;
-            x:
+        x:
             Flag flag = _func.GetFlag(target.Throwing.Motor.StationNo);
             if (sayac > 20)
             {
@@ -661,7 +687,7 @@ namespace FBM.Console
             }
             db.SaveChanges();
         }
-       static List<Castle> caslist;
+        static List<Castle> caslist;
         public static Castle GetCastleByCastleLdrPoint(BallPassedDTO ballPassedDTO)
         {
             if (ballPassedDTO.BallPassedLdrItems.Count < 2)
@@ -676,16 +702,16 @@ namespace FBM.Console
             int xpoint = GetLdrBeforePoint(xldr.Ldr) + xldr.FirstLdrPoint;
             int ypoint = GetLdrBeforePoint(yldr.Ldr) + yldr.FirstLdrPoint;
 
-            caslist = db.Castle.Where(x=>x.WallPosition == xldr.Ldr.WallPosition).ToList();
+            caslist = db.Castle.Where(x => x.WallPosition == xldr.Ldr.WallPosition).ToList();
             foreach (Castle item in caslist)
             {
-                if (item.CastleLdrPoint.Where(x=> x.StartPoint<=xpoint && x.EndPoint>= xpoint && x.Axis == Axis.X).Any() && item.CastleLdrPoint.Where(x => x.StartPoint <= ypoint && x.EndPoint >= ypoint && x.Axis == Axis.Y).Any())
+                if (item.CastleLdrPoint.Where(x => x.StartPoint <= xpoint && x.EndPoint >= xpoint && x.Axis == Axis.X).Any() && item.CastleLdrPoint.Where(x => x.StartPoint <= ypoint && x.EndPoint >= ypoint && x.Axis == Axis.Y).Any())
                 {
                     goal = item;
                     break;
                 }
             }
-        
+
 
             return goal;
         }

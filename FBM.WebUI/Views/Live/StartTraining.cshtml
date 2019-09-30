@@ -8,14 +8,14 @@
 {
     <h1>@ViewBag.Error</h1>
 }
-@using (Html.FBMPanel(Resources.DeviceInfo))
+@*@using (Html.FBMPanel(Resources.DeviceInfo))
 {
     using (Html.FBMDl())
     {
         @Html.FBMDisplayFor(model => model.DeviceInfo.LdrCount)
         @Html.FBMDisplayFor(model => model.DeviceInfo.DeviceCount)
     }
-}
+}*@
 @using (Html.FBMPanel(Resources.ChooseTrainingAndPlayer))
 {
 

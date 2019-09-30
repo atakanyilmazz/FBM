@@ -42,7 +42,7 @@ namespace FBM.Console
             if (args.Count() == 0)
             {
                 args = new string[2];
-                args[0] = "0";
+                args[0] = "107";
                 args[1] = "2a569f44-edf5-e711-80ce-005056b9d9cf";
             }
             FBM_Request request = (FBM_Request)Enum.Parse(typeof(FBM_Request), args[0].Split(' ')[0]);
@@ -107,22 +107,14 @@ namespace FBM.Console
 
         private static void UploadDeviceInfo()
         {
-            System.Console.WriteLine("Device Info Siliniyor.");
-            List<DeviceInfo> dı = db.DeviceInfo.ToList();
-            System.Console.WriteLine($"Bulunan Veri adet {dı.Count}");
-            foreach (var item in dı)
-            {
-                System.Console.WriteLine($"nesne {item.Id} silindi");
-                db.Entry(item).State = EntityState.Deleted;
-            }
-            DeviceInfo ndı = new DeviceInfo();
-            ndı.Id = new Guid();
-            ndı.LdrCount = _func.GetStationDevicesCount();
-            ndı.DeviceCount = _func.GetStationDevicesCount();
+            DeviceInfo dı = db.DeviceInfo.First();
 
-            db.Entry(ndı).State = EntityState.Added;
+            dı.LdrCount = _func.GetStationDevicesCount();
+            dı.DeviceCount = _func.GetStationDevicesCount();
+
+            db.Entry(dı).State = EntityState.Modified;
             db.SaveChanges();
-            System.Console.WriteLine("Veri Eklendi Ldr = " + ndı.LdrCount + " Device = " + ndı.DeviceCount);
+            System.Console.WriteLine("Veri Güncellendi Ldr = " + dı.LdrCount + " Device = " + dı.DeviceCount);
         }
 
         private static void StartTraining(Guid PlayerTrainingId)

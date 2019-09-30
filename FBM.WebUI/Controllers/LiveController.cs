@@ -66,7 +66,7 @@ namespace FBM.WebUI.Controllers
                 Text = x.Name,
                 Value = x.Id.ToString()
             }).ToList();
-            vm.DeviceInfo = ClientServiceProxy.DeviceInfoService().Get()[0];
+            //vm.DeviceInfo = ClientServiceProxy.DeviceInfoService().Get()[0];
             return vm;
         }
 

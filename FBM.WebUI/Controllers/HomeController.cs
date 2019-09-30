@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Text.RegularExpressions;
 using FBM.Data.Entity.Players;
+using FBM.Data.Entity.Station;
 
 namespace FBM.WebUI.Controllers
 {
@@ -14,7 +15,7 @@ namespace FBM.WebUI.Controllers
     {
         public ActionResult Index()
         {
-
+            //DeviceInfo dı = ClientServiceProxy.DeviceInfoService().Get()[0];
             base.CheckMobile();
             return View();
         }

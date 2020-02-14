@@ -239,8 +239,8 @@ namespace FBM.API.Controllers
             if (pname.Length == 0)
             {
                 string path = System.Web.Hosting.HostingEnvironment.MapPath("~/cgi-bin/FBM.Console.exe");
-                string args = "0 " + id.ToString();
-                //string args = id.ToString();
+                //string args = "0 " + id.ToString();
+                string args = id.ToString();
                 ProcessStartInfo p = new ProcessStartInfo(path,args);
                 Process process = Process.Start(p);
                 return true;

@@ -45,7 +45,7 @@ namespace FBM.WinUI
                         ballPassed.BallSpeed = ballpassItem.ballTime;
                         listBox1.Items.Insert(0, String.Format("BallTime -- {0}", ballPassed.BallSpeed));
                         
-                        for (int k = 0; k < ballpassItem.LDR.Count; k++)
+                        for (int k = 0; k < _func.GetLdrDevicesCount(); k++)
                         {
                             if (ballpassItem.LDR[k] != 0)
                             {

@@ -9,7 +9,6 @@
     @Html.AddNewButton(Url.Action("Create"),buttonPosition:Position.Right)
     @Html.AddNewButton(Url.Action("FastCreate"), buttonPosition: Position.Right,text:"Çoklu Ekle")
 }
-}
 @using (Html.FBMPanel(Resources.CastleLdrPoint))
 {
     @Html.Partial("_CastleLdrPointList", Model.List)

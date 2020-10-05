@@ -29,7 +29,7 @@ namespace FBM.Data.API
             {
                 client.BaseAddress = new Uri("http://192.168.1.200:88/");
                 #if DEBUG
-                client.BaseAddress = new Uri("http://localhost:14444/");
+                client.BaseAddress = new Uri("http://localhost:22228/");
                 #endif
             }
             try
@@ -42,7 +42,7 @@ namespace FBM.Data.API
                 client = new HttpClient();
                 client.BaseAddress = new Uri("http://192.168.1.200:88/");
 #if DEBUG
-                client.BaseAddress = new Uri("http://localhost:14444/");
+                client.BaseAddress = new Uri("http://localhost:22228/");
 #endif
             }
         }

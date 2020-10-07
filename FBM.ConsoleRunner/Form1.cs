@@ -21,7 +21,6 @@ namespace FBM.ConsoleRunner
         private void button1_Click(object sender, EventArgs e)
         {
             Guid id;
-            int deneme;
             bool isGuid = Guid.TryParse(textBox1.Text,out id);
             if (isGuid)
             {

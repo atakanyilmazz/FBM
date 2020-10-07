@@ -439,7 +439,6 @@ namespace FBM.Console
                 _stations.Add(station);
             }
         }
-
         private static void StartingAnimation()
         {
 
@@ -476,7 +475,6 @@ namespace FBM.Console
 
 
         }
-
         private static void BlinkColor(Color c, double s, double s2)
         {
             int sayac = 0;
@@ -502,7 +500,6 @@ namespace FBM.Console
             }
             _func.LampsOff();
         }
-
         private static void ShutDown()
         {
             List<LampsOnDTO> list = new List<LampsOnDTO>();

@@ -8,10 +8,12 @@ using FBM.Dll.Struct;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +25,10 @@ namespace FBM.UnityCore
         static DllFunctions _func = new DllFunctions();
         static DbmDbContext db = new DbmDbContext();
         static List<Station> _stations = new List<Station>();
+        static List<LampsOnDTO> vm = new List<LampsOnDTO>();
+
+        static TcpClient client;
+        static NetworkStream stream;
         static void Main(string[] args)
         {
             db.ThrowBallAngle.First();
@@ -33,19 +39,39 @@ namespace FBM.UnityCore
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
                 server = new TcpListener(localAddr, port);
                 server.Start();
-                Byte[] bytes = new Byte[256];
+                Byte[] bytes = new Byte[10000];
                 String data = null;
                 while (true)
                 {
                     Console.Write("Waiting for a connection... ");
-                    TcpClient client = server.AcceptTcpClient();
+                    client = server.AcceptTcpClient();
                     Console.WriteLine("Connected!");
+                    stream = client.GetStream();
+
+                    // Send Feed Data
+                    data = GetFeedData();
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+                    stream.Write(msg, 0, msg.Length);
+                    Console.WriteLine("Sent feed: {0} {1}", msg.Length, data);
                     data = null;
-                    NetworkStream stream = client.GetStream();
+
+                    //if (vm != null)
+                    //{
+                    //    Thread.Sleep(300);
+                    //    TaskDTO ltask = new TaskDTO();
+                    //    ltask.taskType = TaskType.Lamps;
+                    //    ltask.jSonValue = vm;
+                    //    msg = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(ltask));
+                    //    stream.Write(msg, 0, msg.Length);
+                    //    Console.WriteLine("Sent Light Data: {0}", data);
+                    //    vm = null;
+                    //}
+
+                    bool sendLamps = false;
                     int i;
                     while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                        data = Encoding.ASCII.GetString(bytes, 0, i);
                         Console.WriteLine("Received: {0}", data);
 
                         TaskDTO taskDTO = JsonConvert.DeserializeObject<TaskDTO>(data);
@@ -57,26 +83,49 @@ namespace FBM.UnityCore
                                 target = new Target();
                                 target.Throwing = db.Throwing.Where(x => x.Id == throwBallToCastleDTO.throwID).FirstOrDefault();
                                 target.Castle = db.Castle.Where(x => x.Id == throwBallToCastleDTO.castleID).FirstOrDefault();
-                                ThrowBall(target);
+                                sendLamps = true;
+                                //ThrowBall(target);
                                 break;
                             case TaskType.ThrowSingleBall:
                                 ThrowBallDTO throwBallDTO = JsonConvert.DeserializeObject<ThrowBallDTO>(taskDTO.jSonValue.ToString());
                                 throwBallDTO.Throwing = db.Throwing.Where(x => x.Id == throwBallDTO.ThrowingID).FirstOrDefault();
                                 target = new Target();
                                 target.Throwing = throwBallDTO.Throwing;
-                                ThrowBall(target);
+                                sendLamps = true;
+                                //ThrowBall(target);
+                                break;
+                            case TaskType.Lamps:
+                                vm = JsonConvert.DeserializeObject<List<LampsOnDTO>>(taskDTO.jSonValue.ToString());
+                                foreach (LampsOnDTO item in vm)
+                                {
+                                    item.Color = Color.FromArgb(item.R,item.G,item.B);
+                                }
+                                //_func.LampsOn(vm);
+                                sendLamps = true;
                                 break;
                             default:
                                 break;
                         }
 
+                        if (sendLamps && vm != null)
+                        {
+                            Thread.Sleep(300);
+                            TaskDTO ltask = new TaskDTO();
+                            ltask.taskType = TaskType.Lamps;
+                            ltask.jSonValue = vm;
+                            msg = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(ltask));
+                            stream.Write(msg, 0, msg.Length);
+                            Console.WriteLine("Sent Light Data: {0}", data);
+                            vm = null;
+                        }
+
                         //data = data.ToUpper();
-                        //byte[] msg = System.Text.Encoding.ASCII.GetBytes(data + "SssSSs");
+                        //msg = System.Text.Encoding.ASCII.GetBytes(data + "SssSSs");
                         //// Send back a response.
                         //stream.Write(msg, 0, msg.Length);
                         //Console.WriteLine("Sent: {0}", data);
                     }
-                    
+
                     client.Close();
                 }
             }
@@ -91,6 +140,31 @@ namespace FBM.UnityCore
 
             Console.WriteLine("\nHit enter to continue...");
             Console.Read();
+        }
+
+        public static string GetFeedData()
+        {
+            TaskDTO taskDTO = new TaskDTO();
+            taskDTO.taskType = TaskType.Feed;
+
+            FeedDTO dto = new FeedDTO();
+            dto.feedCastles = db.Castle.Select(x => new FeedCastleDTO { id = x.Id, CastleNo = x.CastleNo }).OrderBy(x => x.CastleNo).ToList();
+            dto.feedMotors = db.Motor.Select(x => new FeedMotorDTO
+            {
+                id = x.Id,
+                MotorNo = x.StationNo,
+                feedThrowns = x.Throwing.Select(y => new FeedThrownDTO { id = y.Id }).ToList()
+            }).OrderBy(x => x.MotorNo).ToList();
+            foreach (FeedMotorDTO item1 in dto.feedMotors)
+            {
+                foreach (FeedThrownDTO item in item1.feedThrowns)
+                {
+                    Throwing xx = db.Throwing.Where(x => x.Id == item.id).FirstOrDefault();
+                    item.name = xx.Name;
+                }
+            }
+            taskDTO.jSonValue = dto;
+            return JsonConvert.SerializeObject(taskDTO);
         }
         public static void SetMotor(Throwing throwing)
         {
@@ -242,7 +316,7 @@ namespace FBM.UnityCore
         public static void MakeColor(Castle targetCastle, Castle goalCastle, BallStatus bs)
         {
             _func.LampsOff();
-            List<LampsOnDTO> vm = new List<LampsOnDTO>();
+            vm = new List<LampsOnDTO>();
             LampsOnDTO l1 = new LampsOnDTO()
             {
                 CastleNo = targetCastle.CastleNo
@@ -264,7 +338,7 @@ namespace FBM.UnityCore
                 case BallStatus.Unsuccessful:
                     l1.Color = Color.Red;
                     l2.CastleNo = goalCastle.CastleNo;
-                    l2.Color = Color.Purple;
+                    l2.Color = Color.Red;
                     vm.Add(l1);
                     vm.Add(l2);
                     _func.LampsOn(vm);
@@ -306,17 +380,17 @@ namespace FBM.UnityCore
                 System.Console.WriteLine("Top Atıldı");
                 _stations[target.Throwing.Motor.StationNo].BallCount--;
                 FillBalls(target.Throwing.Motor.StationNo);
-                
+
                 if (target.Castle != null)
                 {
                     BallStatus ballStatus = BallStatus.Thrown;
                     MakeColor(target.Castle, null, ballStatus);
                     DateTime thrownTime = DateTime.Now;
                 }
-                
+
             }
             return 1;
         }
-
+       
     }
 }

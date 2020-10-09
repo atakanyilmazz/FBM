@@ -14,6 +14,9 @@ namespace FBM.UnityCore
 
     public enum TaskType { 
         ThrowSingleBallToCastle =   0,
-        ThrowSingleBall =           1
+        ThrowSingleBall =           1,
+        Feed =                      2,
+        Lamps = 3,
+        EmptyTask = 4
     }
 }

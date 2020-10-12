@@ -10,9 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -26,106 +28,65 @@ namespace FBM.UnityCore
         static DbmDbContext db = new DbmDbContext();
         static List<Station> _stations = new List<Station>();
         static List<LampsOnDTO> vm = new List<LampsOnDTO>();
+        static List<LampsDTO> vm2 = new List<LampsDTO>();
+
+
 
         static TcpClient client;
         static NetworkStream stream;
+        static StreamWriter writer;
+        static StreamReader reader;
+        static TcpListener listener;
         static void Main(string[] args)
         {
+            vm = null;
             db.ThrowBallAngle.First();
-            TcpListener server = null;
             try
             {
                 Int32 port = 13000;
-                IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-                server = new TcpListener(localAddr, port);
-                server.Start();
-                Byte[] bytes = new Byte[10000];
+                IPAddress localAddr = IPAddress.Parse("192.168.1.200");
+                listener = new TcpListener(localAddr, port);
+                listener.Start();
+                
                 String data = null;
                 while (true)
                 {
-                    Console.Write("Waiting for a connection... ");
-                    client = server.AcceptTcpClient();
+                    Console.Write("Waiting for a connection...");
+                    client = listener.AcceptTcpClient();
                     Console.WriteLine("Connected!");
+
                     stream = client.GetStream();
+                    writer = new StreamWriter(stream);
+                    reader = new StreamReader(stream);
 
                     // Send Feed Data
-                    data = GetFeedData();
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-                    stream.Write(msg, 0, msg.Length);
-                    Console.WriteLine("Sent feed: {0} {1}", msg.Length, data);
-                    data = null;
+                    SendTCP(GetFeedData());
+                    Console.WriteLine("-- Feed Sended --");
+                    //
 
-                    //if (vm != null)
-                    //{
-                    //    Thread.Sleep(300);
-                    //    TaskDTO ltask = new TaskDTO();
-                    //    ltask.taskType = TaskType.Lamps;
-                    //    ltask.jSonValue = vm;
-                    //    msg = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(ltask));
-                    //    stream.Write(msg, 0, msg.Length);
-                    //    Console.WriteLine("Sent Light Data: {0}", data);
-                    //    vm = null;
-                    //}
-
-                    bool sendLamps = false;
-                    int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    while (client.Connected)
                     {
-                        data = Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine("Received: {0}", data);
-
-                        TaskDTO taskDTO = JsonConvert.DeserializeObject<TaskDTO>(data);
-                        Target target = new Target();
-                        switch (taskDTO.taskType)
+                        if (vm != null)
                         {
-                            case TaskType.ThrowSingleBallToCastle:
-                                ThrowBallToCastleDTO throwBallToCastleDTO = JsonConvert.DeserializeObject<ThrowBallToCastleDTO>(taskDTO.jSonValue.ToString());
-                                target = new Target();
-                                target.Throwing = db.Throwing.Where(x => x.Id == throwBallToCastleDTO.throwID).FirstOrDefault();
-                                target.Castle = db.Castle.Where(x => x.Id == throwBallToCastleDTO.castleID).FirstOrDefault();
-                                sendLamps = true;
-                                //ThrowBall(target);
-                                break;
-                            case TaskType.ThrowSingleBall:
-                                ThrowBallDTO throwBallDTO = JsonConvert.DeserializeObject<ThrowBallDTO>(taskDTO.jSonValue.ToString());
-                                throwBallDTO.Throwing = db.Throwing.Where(x => x.Id == throwBallDTO.ThrowingID).FirstOrDefault();
-                                target = new Target();
-                                target.Throwing = throwBallDTO.Throwing;
-                                sendLamps = true;
-                                //ThrowBall(target);
-                                break;
-                            case TaskType.Lamps:
-                                vm = JsonConvert.DeserializeObject<List<LampsOnDTO>>(taskDTO.jSonValue.ToString());
-                                foreach (LampsOnDTO item in vm)
-                                {
-                                    item.Color = Color.FromArgb(item.R,item.G,item.B);
-                                }
-                                //_func.LampsOn(vm);
-                                sendLamps = true;
-                                break;
-                            default:
-                                break;
-                        }
-
-                        if (sendLamps && vm != null)
-                        {
+                            Thread.Sleep(300);
+                            GetVm2();
                             Thread.Sleep(300);
                             TaskDTO ltask = new TaskDTO();
                             ltask.taskType = TaskType.Lamps;
-                            ltask.jSonValue = vm;
-                            msg = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(ltask));
-                            stream.Write(msg, 0, msg.Length);
-                            Console.WriteLine("Sent Light Data: {0}", data);
+                            ltask.jSonValue = vm2;
+                            SendTCP(JsonConvert.SerializeObject(ltask));
                             vm = null;
+                            vm2 = null;
+                            Thread.Sleep(300);
                         }
-
-                        //data = data.ToUpper();
-                        //msg = System.Text.Encoding.ASCII.GetBytes(data + "SssSSs");
-                        //// Send back a response.
-                        //stream.Write(msg, 0, msg.Length);
-                        //Console.WriteLine("Sent: {0}", data);
+                        if (stream.DataAvailable)
+                        {
+                            data = reader.ReadLine();
+                            Console.WriteLine("Get :" + data);
+                            if (data != null)
+                                readData(data);
+                        }
                     }
-
                     client.Close();
                 }
             }
@@ -133,15 +94,75 @@ namespace FBM.UnityCore
             {
                 Console.WriteLine("SocketException: {0}", e);
             }
-            finally
-            {
-                server.Stop();
-            }
 
             Console.WriteLine("\nHit enter to continue...");
             Console.Read();
         }
+        public static void SendTCP(string data)
+        {
+            if (client.Connected)
+            {
+                writer.WriteLine(data);
+                writer.Flush();
+                Console.WriteLine("Sended :" + data);
+                data = null;
+            }
+        }
+        public static void GetVm2()
+        {
+            vm2.Clear();
+            foreach (var item in vm)
+            {
+                LampsDTO dto = new LampsDTO();
+                dto.CastleNo = item.CastleNo;
+                dto.R = item.Color.R;
+                dto.G = item.Color.G;
+                dto.B = item.Color.B;
+                vm2.Add(dto);
+            }
+        }
+        public static void readData(string data)
+        {
+            TaskDTO taskDTO = JsonConvert.DeserializeObject<TaskDTO>(data);
+            Target target = new Target();
+            switch (taskDTO.taskType)
+            {
+                case TaskType.ThrowSingleBallToCastle:
+                    ThrowBallToCastleDTO throwBallToCastleDTO = JsonConvert.DeserializeObject<ThrowBallToCastleDTO>(taskDTO.jSonValue.ToString());
+                    target = new Target();
+                    target.Throwing = db.Throwing.Where(x => x.Id == throwBallToCastleDTO.throwID).FirstOrDefault();
+                    target.Castle = db.Castle.Where(x => x.Id == throwBallToCastleDTO.castleID).FirstOrDefault();
+                    //ThrowBall(target);
+                    break;
+                case TaskType.ThrowSingleBall:
+                    ThrowBallDTO throwBallDTO = JsonConvert.DeserializeObject<ThrowBallDTO>(taskDTO.jSonValue.ToString());
+                    throwBallDTO.Throwing = db.Throwing.Where(x => x.Id == throwBallDTO.ThrowingID).FirstOrDefault();
+                    target = new Target();
+                    target.Throwing = throwBallDTO.Throwing;
+                    //ThrowBall(target);
+                    break;
+                case TaskType.Lamps:
+                    vm2 = JsonConvert.DeserializeObject<List<LampsDTO>>(taskDTO.jSonValue.ToString());
+                    vm = new List<LampsOnDTO>();
+                    foreach (LampsDTO item in vm2)
+                    {
+                        LampsOnDTO lodto = new LampsOnDTO();
+                        lodto.CastleNo = item.CastleNo;
+                        lodto.Color = Color.FromArgb(item.R, item.G, item.B);
+                        vm.Add(lodto);
+                    }
+                    //_func.LampsOff();
+                    //_func.LampsOn(vm);
+                    break;
+                case TaskType.Kill:
+                    client.Close();
+                    break;
+                default:
+                    break;
+            }
 
+            
+        }
         public static string GetFeedData()
         {
             TaskDTO taskDTO = new TaskDTO();
@@ -391,6 +412,5 @@ namespace FBM.UnityCore
             }
             return 1;
         }
-       
     }
 }

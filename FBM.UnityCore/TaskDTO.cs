@@ -17,6 +17,6 @@ namespace FBM.UnityCore
         ThrowSingleBall =           1,
         Feed =                      2,
         Lamps = 3,
-        EmptyTask = 4
+        Kill = 4
     }
 }
